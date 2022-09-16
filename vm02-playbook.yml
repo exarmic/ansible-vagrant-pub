@@ -1,0 +1,50 @@
+- name: Run playbook for installation Foreman and FreeIPA client with adding client to FreeIPA domain
+  hosts: localhost
+  become: yes
+
+  tasks: 
+
+  - name: Change IP address
+    ansible.builtin.lineinfile:
+      path: /etc/network/interfaces
+      regexp: '^ address 192.168.56.151'
+      line: ' address 192.168.56.152'
+
+  - name: Get/Install fly-admin-freeipa-client from repository apt
+    apt:
+     name: fly-admin-freeipa-client
+
+  - name: Join to FreeIPA test.local domain
+    shell: astra-freeipa-client -d test.local -u admin -p P@ssw0rd -y
+
+  - name: Get/Install Foreman and following packages from repository apt
+    apt:
+     pkg:
+     - shared-mime-info
+     - foreman-installer
+     - openjdk-11-jre-headless
+     - puppetserver
+
+  - name: Make sure a service puppetsmaster is running
+    ansible.builtin.systemd:
+      enabled: yes
+      state: started
+      name: puppetserver
+
+#  - name: add en_US.utf8 locale 
+#    shell: echo "en_US.UTF-8 UTF-8" | tee -a /etc/locale.gen && locale-gen
+
+### Check foreman server status
+  - name: get foreman server status
+    shell: echo $(sudo systemctl status foreman)
+    register: var_foreman
+#    failed_when: var_output.rc not in [ 0, 200 ]
+  - debug: var=var_foreman.stdout  
+
+  - name: Run foreman installer
+    shell: sudo foreman-installer --enable-foreman-plugin-ansible --enable-foreman-proxy-plugin-ansible --enable-foreman-plugin-remote-execution --enable-foreman-proxy-plugin-remote-execution-ssh
+    when: var_foreman.stdout.find('loaded') == -1
+
+  - name: Change foreman initial credentials
+    shell: foreman-rake permissions:reset username=admin password=P@ssw0rd
+#   when: var_foreman.stdout.find('loaded') == -1

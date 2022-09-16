@@ -1,0 +1,56 @@
+---
+- name: Run playbook for installation FreeIPA and adding users to domain
+  hosts: localhost
+  become: yes
+
+  tasks: 
+  
+### Get freeipa server status. 
+  - name: Get freeipa server status.
+    shell: echo $(sudo astra-freeipa-server -i)
+    register: var_output
+#   failed_when: var_output.rc not in [ 0, 200 ]
+  - debug: var=var_output.stdout  
+  
+  - name: Get/Install fly-admin-freeipa-server from repository apt
+    apt:
+     name: fly-admin-freeipa-
+### Check freeipa server status. 
+    when: var_output.stdout.find('test.local') == -1
+
+  - name: Initialize freeipa server after installation
+    shell: astra-freeipa-server -d test.local -n vm01 -p P@ssw0rd -o --ssl -ip $(ip addr show eth1 | grep eth1 | grep inet | awk '{print $2}' | cut -d'/' -f1) -y
+### Check freeipa server status. 
+    when: var_output.stdout.find('test.local') == -1
+
+### Get freeipa server status before kinit
+  - name: Check freeipa server status before kinit
+    shell: echo $(sudo astra-freeipa-server -i)
+    register: var_ipa_status_kinit
+#    failed_when: var_output.rc not in [ 0, 200 ]
+  - debug: var=var_ipa_status_kinit.stdout  
+
+  - name: Creating Kerberos ticket with kinit
+    ansible.builtin.expect:
+      command: kinit admin
+      responses:
+        Password: "P@ssw0rd"
+    timeout: 5
+### Check freeipa server status before kinit
+    when: var_ipa_status_kinit.stdout.find('test.local') != -1
+
+
+### Check if users in FreeIPA domain
+  - name: Check users in FreeIPA domain
+    shell: echo $(sudo ipa user-find mlisin)
+    register: var_user
+#    failed_when: var_output.rc not in [ 0, 200 ]
+#  - debug: var=var_user.stdout..
+
+
+  - name: Adding users to domain
+    shell: |
+      ipa user-add mlisina --first=Maria --last=Lisina --random --all
+      ipa user-add mlisin --first=Mikhail --last=Lisin --random --all
+### Add user if not exist
+      when: var_user.stdout.find('mlisin') == -1

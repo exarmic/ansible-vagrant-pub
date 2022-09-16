@@ -1,0 +1,72 @@
+---
+- name: Run playbook for installation Docker and running Zabbix in containers
+  hosts: localhost
+  become: yes
+
+  vars:
+    db_username: root
+    db_password: password
+
+  tasks: 
+
+  - name: Change IP address
+    ansible.builtin.lineinfile:
+      path: /etc/network/interfaces
+      regexp: '^ address 192.168.56.151'
+      line: ' address 192.168.56.153'
+
+  - name: Get/Install Docker  from repository apt
+    apt:
+     name: docker.io
+
+  - name: add vagrant to docker group
+    shell: echo $(sudo usermod -aG docker vagrant)
+    args:
+      executable: /bin/bash
+
+  - name: Creat "MySQL for Zabbix" container
+    community.docker.docker_container:
+      name: zabbix-mysql
+      image: mysql
+      restart_policy: always
+      env:
+        MYSQL_ROOT_PASSWORD: "{{ db_password }}"
+
+  - name: Get "zabbix-mysql" container IP address
+    shell: echo $(docker inspect -f '{''{range.NetworkSettings.Networks}''}''{''{.IPAddress}''}''{''{end}''}' zabbix-mysql)
+    register: zabbix_mysql_ipaddr
+  - debug: var=zabbix_mysql_ipaddr.stdout
+
+  - name: Creat zabbix server-mysql container
+    community.docker.docker_container:
+      name: zabbix-server-mysql
+      image: zabbix/zabbix-server-mysql
+      ports:
+       - "10051:10051"
+      restart_policy: always
+      env:
+        MYSQL_PASSWORD: "{{ db_password }}"
+        DB_SERVER_HOST: "{{ zabbix_mysql_ipaddr.stdout }}"
+        MYSQL_USER: "{{ db_username }}"
+
+  - name: Get "zabbix-server-mysql" container IP address
+    shell: echo $(docker inspect -f '{''{range.NetworkSettings.Networks}''}''{''{.IPAddress}''}''{''{end}''}' zabbix-server-mysql)
+    register: zabbix_server_mysql_ipaddr
+  - debug: var=zabbix_server_mysql_ipaddr.stdout
+
+  - name: Create Zabbix Apache mysql frontend container
+    community.docker.docker_container:
+      name: zabbix-web-apache-mysql
+      image: zabbix/zabbix-web-apache-mysql
+      ports:
+       - "443:8443"
+       - "80:8080"
+      restart_policy: always
+      env:
+        MYSQL_PASSWORD: "{{ db_password }}"
+        DB_SERVER_HOST: "{{ zabbix_mysql_ipaddr.stdout }}"
+        MYSQL_USER: "{{ db_username }}"
+        ZBX_SERVER_HOST: "{{ zabbix_server_mysql_ipaddr.stdout }}"
+        PHP_TZ: "Europe/Moscow"
+
+
