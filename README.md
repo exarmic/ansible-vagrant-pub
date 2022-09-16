@@ -123,7 +123,7 @@ sudo systemctl start myservice
  * cd c:\Arseniy\Ansible+Vagrant\images\
  * vagrant package --base alse-vanilla-1.7.2-virtualbox-mg7.2.0 <br/>
  * mkdir ..\presale-proj <br/>
- * copy package.box ..\presale-proj\ <br/>
+ * copy package.box ..\presale-proj\alse-vanilla-1.7.2-virtualbox-mg7.2.0.box <br/>
  * cd ..\presale-proj <br/>
  * запуск и подключение vagrant up и vagrant ssh 
  
