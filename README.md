@@ -12,6 +12,7 @@ Vagrant запускает виртуальные мышины использу�
   * https://wiki.astralinux.ru/pages/viewpage.action?pageId=60359750
   * https://www.youtube.com/watch?v=DUNH8f3rzS0
   * https://www.youtube.com/watch?v=wd2Uc1qHjds
+  * https://wiki.astralinux.ru/pages/viewpage.action?pageId=153488486 
   * https://www.devopszones.com/2020/03/how-to-add-freeipa-user-in-cli-and-web.html
 * Foreman
   * https://wiki.astralinux.ru/pages/viewpage.action?pageId=57444668
