@@ -146,8 +146,8 @@ sudo systemctl start myservice
 
  
 * Упаковка в "base box"
-   * cd c:\Arseniy\Ansible+Vagrant\images\
-   * vagrant package --base alse-vanilla-1.7.2-virtualbox-mg7.2.0 <br/> # где "alse-vanilla-1.7.2-virtualbox-mg7.2.0" - имя виртуальной машины в VirtualBox
+   * cd c:\Arseniy\Ansible+Vagrant\images\ <br/> 
+   * vagrant package --base alse-vanilla-1.7.2-virtualbox-mg7.2.0 # где "alse-vanilla-1.7.2-virtualbox-mg7.2.0" - имя виртуальной машины в VirtualBox
 
 
  
