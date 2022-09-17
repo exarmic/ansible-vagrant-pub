@@ -35,7 +35,7 @@
 * Загрузить Vagrantfile и Ansible playbook'и: https://github.com/exarmic/ansible-vagrant-pub 
 * Создать каталог, скопировать в него распокаванные фаилы Git и подготовленный образ "base box".  
 * Перейти в каталог и запустить vagrant up. Первичный запуск окружения будет достаточно длительный (в моих тестах порядка 20-30 мин.), так как будут загружаться и устанавливаться пакеты FreeIPA server, FreeIPA client, Foreman, Docker и контейнеры приложений для Zabbix. 
-* Добавить "запись 192.168.56.151 vm01.test.local" в C:\Windows\System32\drivers\etc\hosts
+* Добавить запись "192.168.56.151 vm01.test.local" в C:\Windows\System32\drivers\etc\hosts
 * Подключение:
 
 | VM01 | VM02  | VM03 |
