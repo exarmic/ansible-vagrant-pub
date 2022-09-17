@@ -39,6 +39,7 @@ Vagrant запускает виртуальные мышины использу�
 | VM01 | VM02  | VM03 |
 |:---------------:|:---------:|:----------------:|
 | FreeIPA: https://vm01.test.local/ipa/ui/ | Foreman: https://localhost:8243/users/login | Zabbix: http://localhost:8082 |
+| admin/P@ssw0rd | admin/P@ssw0rd | Admin/zabbix (login case-sensetive!) |
 | FreeIPA Server, DNS сервер | FreeIPA Client, Foreman | Docker+Zabbix |
 
 
