@@ -14,7 +14,7 @@
   
   - name: Get/Install fly-admin-freeipa-server from repository apt
     apt:
-     name: fly-admin-freeipa-
+     name: fly-admin-freeipa-server
 ### Check freeipa server status. 
     when: var_output.stdout.find('test.local') == -1
 
@@ -53,4 +53,4 @@
       ipa user-add mlisina --first=Maria --last=Lisina --random --all
       ipa user-add mlisin --first=Mikhail --last=Lisin --random --all
 ### Add user if not exist
-      when: var_user.stdout.find('mlisin') == -1
+    when: var_user.stdout.find('mlisin') == -1
