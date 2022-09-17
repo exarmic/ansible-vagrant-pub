@@ -4,7 +4,7 @@
 
 Выполнение задания подразумевает использовать подход IaC. В нашем задании основными инструментами для запуска окружения должны быть Vagrant, VirtualBox, Ansible, Docker. В моем случае Vagrant и VirtualBox устанавливаются на Windows, а Ansible и Docker настраивают приложения и разварачивают инфраструктуру внутри виртуальных машин. 
 
-Для запуска виртуальных мышин Vagrant'у необходимы базовые образы ("base box") операционной системы. В нашем стенде "base box" собран на основе готово VirtualBox образа Astra Linux SE. Подготовку "base box" выполняю из Windows 10. На официальной wiki Astra Linux можно найти инструкцию https://wiki.astralinux.ru/display/doc/Vagrant по подготовке "base box" внутри Astra Linux. Ansible включен/установлен в "base box",  playbook'и вызываются через Vagrant, но фактически выполняются установленным в "base box" Ansible, т.е. запускаемся ВМ является control node для самой себя. 
+Для запуска виртуальных мышин Vagrant'у необходимы базовые образы ("base box") операционной системы. В нашем стенде "base box" собран на основе готового VirtualBox образа Astra Linux SE. Подготовку "base box" выполнял из Windows 10. На официальной wiki Astra Linux можно найти инструкцию https://wiki.astralinux.ru/display/doc/Vagrant по подготовке "base box" внутри Astra Linux. Так как работаю из WIndows то Ansible включил/установил в "base box",  playbook'и вызываются через Vagrant, но фактически выполняются установленным в "base box" Ansible, т.е. запускаемая ВМ является control node для самой себя. 
 
 #### Основные документы используемые при подготовке Ansible и playbook'ов:
 * FreeIPA
