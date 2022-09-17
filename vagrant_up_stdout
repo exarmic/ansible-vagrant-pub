@@ -1,0 +1,241 @@
+c:\Arseniy\Ansible+Vagrant\presale-proj>vagrant up
+Bringing machine 'vm01' up with 'virtualbox' provider...
+Bringing machine 'vm02' up with 'virtualbox' provider...
+Bringing machine 'vm03' up with 'virtualbox' provider...
+==> vm01: Importing base box 'alse-vanilla-1.7.2-virtualbox-mg7.2.0.box'...
+==> vm01: Matching MAC address for NAT networking...
+==> vm01: Setting the name of the VM: presale-proj_vm01_1663421293487_1191
+==> vm01: Clearing any previously set network interfaces...
+==> vm01: Preparing network interfaces based on configuration...
+    vm01: Adapter 1: nat
+    vm01: Adapter 2: hostonly
+==> vm01: Forwarding ports...
+    vm01: 80 (guest) => 8080 (host) (adapter 1)
+    vm01: 443 (guest) => 8143 (host) (adapter 1)
+    vm01: 22 (guest) => 10221 (host) (adapter 1)
+==> vm01: Running 'pre-boot' VM customizations...
+==> vm01: Booting VM...
+==> vm01: Waiting for machine to boot. This may take a few minutes...
+    vm01: SSH address: 127.0.0.1:10221
+    vm01: SSH username: vagrant
+    vm01: SSH auth method: private key
+    vm01:
+    vm01: Vagrant insecure key detected. Vagrant will automatically replace
+    vm01: this with a newly generated keypair for better security.
+    vm01:
+    vm01: Inserting generated public key within guest...
+    vm01: Removing insecure key from the guest if it's present...
+    vm01: Key inserted! Disconnecting and reconnecting using new SSH key...
+==> vm01: Machine booted and ready!
+==> vm01: Checking for guest additions in VM...
+==> vm01: Setting hostname...
+==> vm01: Mounting shared folders...
+    vm01: /vagrant => C:/Arseniy/Ansible+Vagrant/presale-proj
+==> vm01: Running provisioner: shell...
+    vm01: Running: inline script
+==> vm01: Running provisioner: ansible_local...
+    vm01: Running ansible-playbook...
+[DEPRECATION WARNING]: Ansible will require Python 3.8 or newer on the
+controller starting with Ansible 2.12. Current version: 3.7.3 (default, Jun 30
+2022, 16:28:32) [GCC 8.3.0]. This feature will be removed from ansible-core in
+version 2.12. Deprecation warnings can be disabled by setting
+deprecation_warnings=False in ansible.cfg.
+
+PLAY [Run playbook for installation FreeIPA and adding users to domain] ********
+
+TASK [Gathering Facts] *********************************************************
+ok: [localhost]
+
+TASK [Get freeipa server status.] **********************************************
+changed: [localhost]
+
+TASK [debug] *******************************************************************
+ok: [localhost] => {
+    "var_output.stdout": ""
+}
+
+TASK [Get/Install fly-admin-freeipa-server from repository apt] ****************
+changed: [localhost]
+
+TASK [Initialize freeipa server after installation] ****************************
+changed: [localhost]
+
+TASK [Check freeipa server status before kinit] ********************************
+changed: [localhost]
+
+TASK [debug] *******************************************************************
+ok: [localhost] => {
+    "var_ipa_status_kinit.stdout": "Обнаружен настроенный домен test.local WEB: https://vm01.test.local"
+}
+
+TASK [Creating Kerberos ticket with kinit] *************************************
+changed: [localhost]
+
+TASK [Check users in FreeIPA domain] *******************************************
+changed: [localhost]
+
+TASK [Adding users to domain] **************************************************
+changed: [localhost]
+
+PLAY RECAP *********************************************************************
+localhost                  : ok=10   changed=7    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+==> vm02: Importing base box 'alse-vanilla-1.7.2-virtualbox-mg7.2.0.box'...
+==> vm02: Matching MAC address for NAT networking...
+==> vm02: Setting the name of the VM: presale-proj_vm02_1663422088511_27907
+==> vm02: Clearing any previously set network interfaces...
+==> vm02: Preparing network interfaces based on configuration...
+    vm02: Adapter 1: nat
+    vm02: Adapter 2: hostonly
+==> vm02: Forwarding ports...
+    vm02: 80 (guest) => 8081 (host) (adapter 1)
+    vm02: 443 (guest) => 8243 (host) (adapter 1)
+    vm02: 22 (guest) => 10222 (host) (adapter 1)
+==> vm02: Running 'pre-boot' VM customizations...
+==> vm02: Booting VM...
+==> vm02: Waiting for machine to boot. This may take a few minutes...
+    vm02: SSH address: 127.0.0.1:10222
+    vm02: SSH username: vagrant
+    vm02: SSH auth method: private key
+    vm02:
+    vm02: Vagrant insecure key detected. Vagrant will automatically replace
+    vm02: this with a newly generated keypair for better security.
+    vm02:
+    vm02: Inserting generated public key within guest...
+    vm02: Removing insecure key from the guest if it's present...
+    vm02: Key inserted! Disconnecting and reconnecting using new SSH key...
+==> vm02: Machine booted and ready!
+==> vm02: Checking for guest additions in VM...
+==> vm02: Setting hostname...
+==> vm02: Mounting shared folders...
+    vm02: /vagrant => C:/Arseniy/Ansible+Vagrant/presale-proj
+==> vm02: Running provisioner: shell...
+    vm02: Running: inline script
+==> vm02: Running provisioner: ansible_local...
+    vm02: Running ansible-playbook...
+[DEPRECATION WARNING]: Ansible will require Python 3.8 or newer on the
+controller starting with Ansible 2.12. Current version: 3.7.3 (default, Jun 30
+2022, 16:28:32) [GCC 8.3.0]. This feature will be removed from ansible-core in
+version 2.12. Deprecation warnings can be disabled by setting
+deprecation_warnings=False in ansible.cfg.
+
+PLAY [Run playbook for installation Foreman and FreeIPA client with adding client to FreeIPA domain] ***
+
+TASK [Gathering Facts] *********************************************************
+ok: [localhost]
+
+TASK [Change IP address] *******************************************************
+changed: [localhost]
+
+TASK [Get/Install fly-admin-freeipa-client from repository apt] ****************
+changed: [localhost]
+
+TASK [Join to FreeIPA test.local domain] ***************************************
+changed: [localhost]
+
+TASK [Get/Install Foreman and following packages from repository apt] **********
+changed: [localhost]
+
+TASK [Make sure a service puppetsmaster is running] ****************************
+changed: [localhost]
+
+TASK [get foreman server status] ***********************************************
+changed: [localhost]
+
+TASK [debug] *******************************************************************
+ok: [localhost] => {
+    "var_foreman.stdout": ""
+}
+
+TASK [Run foreman installer] ***************************************************
+changed: [localhost]
+
+TASK [Change foreman initial credentials] **************************************
+changed: [localhost]
+
+PLAY RECAP *********************************************************************
+localhost                  : ok=10   changed=8    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+==> vm03: Importing base box 'alse-vanilla-1.7.2-virtualbox-mg7.2.0.box'...
+==> vm03: Matching MAC address for NAT networking...
+==> vm03: Setting the name of the VM: presale-proj_vm03_1663423086903_54321
+==> vm03: Clearing any previously set network interfaces...
+==> vm03: Preparing network interfaces based on configuration...
+    vm03: Adapter 1: nat
+    vm03: Adapter 2: hostonly
+==> vm03: Forwarding ports...
+    vm03: 80 (guest) => 8082 (host) (adapter 1)
+    vm03: 443 (guest) => 8343 (host) (adapter 1)
+    vm03: 22 (guest) => 10223 (host) (adapter 1)
+==> vm03: Running 'pre-boot' VM customizations...
+==> vm03: Booting VM...
+==> vm03: Waiting for machine to boot. This may take a few minutes...
+    vm03: SSH address: 127.0.0.1:10223
+    vm03: SSH username: vagrant
+    vm03: SSH auth method: private key
+    vm03:
+    vm03: Vagrant insecure key detected. Vagrant will automatically replace
+    vm03: this with a newly generated keypair for better security.
+    vm03:
+    vm03: Inserting generated public key within guest...
+    vm03: Removing insecure key from the guest if it's present...
+    vm03: Key inserted! Disconnecting and reconnecting using new SSH key...
+==> vm03: Machine booted and ready!
+==> vm03: Checking for guest additions in VM...
+==> vm03: Setting hostname...
+==> vm03: Mounting shared folders...
+    vm03: /vagrant => C:/Arseniy/Ansible+Vagrant/presale-proj
+==> vm03: Running provisioner: shell...
+    vm03: Running: inline script
+==> vm03: Running provisioner: ansible_local...
+    vm03: Running ansible-playbook...
+[DEPRECATION WARNING]: Ansible will require Python 3.8 or newer on the
+controller starting with Ansible 2.12. Current version: 3.7.3 (default, Jun 30
+2022, 16:28:32) [GCC 8.3.0]. This feature will be removed from ansible-core in
+version 2.12. Deprecation warnings can be disabled by setting
+deprecation_warnings=False in ansible.cfg.
+
+PLAY [Run playbook for installation Docker and running Zabbix in containers] ***
+
+TASK [Gathering Facts] *********************************************************
+ok: [localhost]
+
+TASK [Change IP address] *******************************************************
+changed: [localhost]
+
+TASK [Get/Install Docker  from repository apt] *********************************
+changed: [localhost]
+
+TASK [add vagrant to docker group] *********************************************
+changed: [localhost]
+
+TASK [Creat "MySQL for Zabbix" container] **************************************
+changed: [localhost]
+
+TASK [Get "zabbix-mysql" container IP address] *********************************
+changed: [localhost]
+
+TASK [debug] *******************************************************************
+ok: [localhost] => {
+    "zabbix_mysql_ipaddr.stdout": "172.17.0.2"
+}
+
+TASK [Creat zabbix server-mysql container] *************************************
+changed: [localhost]
+
+TASK [Get "zabbix-server-mysql" container IP address] **************************
+changed: [localhost]
+
+TASK [debug] *******************************************************************
+ok: [localhost] => {
+    "zabbix_server_mysql_ipaddr.stdout": "172.17.0.3"
+}
+
+TASK [Create Zabbix Apache mysql frontend container] ***************************
+changed: [localhost]
+
+PLAY RECAP *********************************************************************
+localhost                  : ok=11   changed=8    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+
+c:\Arseniy\Ansible+Vagrant\presale-proj>
