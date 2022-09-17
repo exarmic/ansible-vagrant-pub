@@ -33,7 +33,7 @@
   * https://hub.docker.com/_/mysql
   * https://www.devopsschool.com/blog/how-to-install-zabbix-server-and-dashboard-using-docker/
 
-Vagrantfile описывает 3 виртуальные машины:
+[Vagrantfile](/Vagrantfile) описывает 3 виртуальные машины:
 
 | Свойство\виртуальная машина  | VM01 | VM02  | VM03 |
 |----------------|:---------:|:-----------:|:---------:|
@@ -42,6 +42,12 @@ Vagrantfile описывает 3 виртуальные машины:
 | Adapter 2 (eth1)  | 192.168.56.151 | 192.168.56.152 | 192.168.56.153 |
 | Используемый playbook | [vm01-playbook.yml](/vm01-playbook.yml) | [vm02-playbook.yml](/vm02-playbook.yml) | [vm03-playbook.yml](/vm03-playbook.yml)  |
 | Основные устанавливаемые пакеты | FreeIPA Server | FreeIPA Client, Foreman | Docker+Zabbix App containers |
+
+#### Основные документы используемые при подготовке Vagrantfile:
+* https://www.vagrantup.com/docs/boxes/base # информация по base box
+* https://www.vagrantup.com/docs/networking # сетевой аспект ВМ
+* https://www.vagrantup.com/docs/vagrantfile/machine_settings # параметры ВМ
+* https://www.vagrantup.com/docs/provisioning/ansible_local # провижиониг через ansible
 
 #### Замечания 
 
