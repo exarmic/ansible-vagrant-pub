@@ -40,7 +40,7 @@ Vagrant запускает виртуальные мышины использу�
 |:---------------:|:---------:|:----------------:|
 | FreeIPA: https://vm01.test.local/ipa/ui/ | Foreman: https://localhost:8243/users/login | Zabbix: http://localhost:8082 |
 | admin/P@ssw0rd | admin/P@ssw0rd | Admin/zabbix (login case-sensetive!) |
-| FreeIPA Server, DNS сервер | FreeIPA Client, Foreman | Docker+Zabbix |
+| FreeIPA Server | Foreman | Zabbix |
 
 
 В общем Vagrantfile описывает 3 виртуальные машины:
