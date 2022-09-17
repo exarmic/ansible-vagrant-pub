@@ -30,6 +30,23 @@
   * https://hub.docker.com/_/mysql
   * https://www.devopsschool.com/blog/how-to-install-zabbix-server-and-dashboard-using-docker/
 
+
+В общем Vagrantfile описывает 3 виртуальные машины:
+| Свойство\виртуальная машина  | VM01 | VM02  | VM03 |
+|----------------|:---------:|:-----------:|:---------:|
+| Ресурсы | 4 ГБ ОЗУ, 3vCPU | 3 ГБ ОЗУ, 2vCPU | 2 ГБ ОЗУ, 2vCPU |
+| Adapter 1 (eth0), Проброс портов "порт ВМ":"порт хоста" | 80:8080, 22:10221, 443:8143 | 80:8081, 22:10222, 443:8243 | 80:8082, 22:10223, 443:8343 |
+| Adapter 2 (eth1)  | 192.168.56.151 | 192.168.56.152 | 192.168.56.153 |
+| Используемый playbook | [vm01-playbook.yml](/vm01-playbook.yml) | [vm02-playbook.yml](/vm02-playbook.yml) | [vm03-playbook.yml](/vm03-playbook.yml)  |
+| Основные устанавливаемые пакеты | FreeIPA Server | FreeIPA Client, Foreman | Docker+Zabbix App containers |
+
+#### Замечания 
+* Host-only сеть не обозначена в задании но необходима:
+1) Для регистрации клиентов (vm02) в домене
+2) Для доступа до админской WEB страницы FreeIPA Server. Также  необходимо добавить запись "192.168.56.151 vm01.test.local" в C:\Windows\System32\drivers\etc\hosts.  Модуль rewrite на Apache редиректит на https://vm01.test.local/ipa/ui/, таким образом нет возможности доступа через localhost:8080. Даже добавление записи "127.0.0.1 vm01.test.local" в hosts Windows не решает проблему так как редирект идет на 443 порт. На проработать - изучить настройки apache для воможности обращения к админке сервера FreeIPA по адресу localhost
+* Foreman работает на 443 порту по https, Таким образом помимо обозначенного в задании (и вроде как бесполезного) проброса 80:8081 добавлен проброс портов 443:8243
+* Добавлен проброс 22 (sshd) портов для более предсказуемого поведения
+
 #### Запуск стенда и подключение:
 (Я использую Windows)
 * Загрузить и установить установщик Vagrant: https://www.vagrantup.com/downloads. Vagrant по умолчанию поддерживает гипервизор (provider) VirtualBox. Я использовал Vagrant 2.3.0.
@@ -47,24 +64,6 @@
 | FreeIPA: https://vm01.test.local/ipa/ui/ | Foreman: https://localhost:8243/users/login | Zabbix: http://localhost:8082 |
 | admin/P@ssw0rd | admin/P@ssw0rd | Admin/zabbix (login case-sensetive!) |
 | FreeIPA Server | Foreman | Zabbix |
-
-
-В общем Vagrantfile описывает 3 виртуальные машины:
-| Свойство\виртуальная машина  | VM01 | VM02  | VM03 |
-|----------------|:---------:|:-----------:|:---------:|
-| Ресурсы | 4 ГБ ОЗУ, 3vCPU | 3 ГБ ОЗУ, 2vCPU | 2 ГБ ОЗУ, 2vCPU |
-| Adapter 1 (eth0), Проброс портов "порт ВМ":"порт хоста" | 80:8080, 22:10221, 443:8143 | 80:8081, 22:10222, 443:8243 | 80:8082, 22:10223, 443:8343 |
-| Adapter 2 (eth1)  | 192.168.56.151 | 192.168.56.152 | 192.168.56.153 |
-| Используемый playbook | [vm01-playbook.yml](/vm01-playbook.yml) | [vm02-playbook.yml](/vm02-playbook.yml) | [vm03-playbook.yml](/vm03-playbook.yml)  |
-| Основные устанавливаемые пакеты | FreeIPA Server | FreeIPA Client, Foreman | Docker+Zabbix App containers |
-
-
-#### Замечания 
-* Host-only сеть не обозначена в задании но необходима:
-1) Для регистрации клиентов (vm02) в домене
-2) Для доступа до админской WEB страницы FreeIPA Server. Также  необходимо добавить запись "192.168.56.151 vm01.test.local" в C:\Windows\System32\drivers\etc\hosts.  Модуль rewrite на Apache редиректит на https://vm01.test.local/ipa/ui/, таким образом нет возможности доступа через localhost:8080. Даже добавление записи "127.0.0.1 vm01.test.local" в hosts Windows не решает проблему так как редирект идет на 443 порт. На проработать - изучить настройки apache для воможности обращения к админке сервера FreeIPA по адресу localhost
-* Foreman работает на 443 порту по https, Таким образом помимо обозначенного в задании (и вроде как бесполезного) проброса 80:8081 добавлен проброс портов 443:8243
-* Добавлен проброс 22 (sshd) портов для более предсказуемого поведения
 
 
 ### Процедура подготовки base box
