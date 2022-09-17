@@ -127,6 +127,6 @@ sudo systemctl start myservice
  * mkdir ..\presale-proj <br/>
  * copy package.box ..\presale-proj\alse-vanilla-1.7.2-virtualbox-mg7.2.0.box <br/>
  * cd ..\presale-proj <br/>
- * запуск и подключение vagrant up и vagrant ssh 
+ * запуск и подключение vagrant up и vagrant ssh (vm01|vm02|vm03)
  
 
