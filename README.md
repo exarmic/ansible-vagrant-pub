@@ -121,12 +121,12 @@ sudo systemctl start myservice
    * echo "en_US.UTF-8 UTF-8" | sudo tee -a /etc/locale.gen && sudo locale-gen # для VM02 для установки Foreman
 
  
- ### Упаковка в "base box" и запуск тестовой ВМ
+ ### Упаковка в "base box"
  * cd c:\Arseniy\Ansible+Vagrant\images\
  * vagrant package --base alse-vanilla-1.7.2-virtualbox-mg7.2.0 <br/>
  * mkdir ..\presale-proj <br/>
  * copy package.box ..\presale-proj\alse-vanilla-1.7.2-virtualbox-mg7.2.0.box <br/>
  * cd ..\presale-proj <br/>
- * запуск и подключение vagrant up и vagrant ssh (vm01|vm02|vm03)
+
  
 
