@@ -26,34 +26,34 @@ Vagrant.configure("2") do |config|
   config.vm.define "vm01" do |vm01|
     vm01.vm.box = "alse-vanilla-1.7.2-virtualbox-mg7.2.0.box"
     vm01.vm.network "forwarded_port", guest: 80, host: 8080
-	vm01.vm.network "forwarded_port", guest: 443, host: 8143
-	vm01.vm.network :forwarded_port, guest: 22, host: 10221, id: "ssh"
-	vm01.vm.hostname = "vm01.test.local"
-	vm01.vm.network "private_network",  ip: "192.168.56.151", name: "VirtualBox Host-Only Ethernet Adapter", adapter:2, auto_config: false, hostname: true
-	vm01.vm.provision "shell", run: "always", inline: "ifconfig eth1 192.168.56.151 netmask 255.255.255.0 up" 
-	vm01.vm.provision "ansible_local" do |ansible|
+    vm01.vm.network "forwarded_port", guest: 443, host: 8143
+    vm01.vm.network :forwarded_port, guest: 22, host: 10221, id: "ssh"
+    vm01.vm.hostname = "vm01.test.local"
+    vm01.vm.network "private_network",  ip: "192.168.56.151", name: "VirtualBox Host-Only Ethernet Adapter", adapter:2, auto_config: false, hostname: true
+    vm01.vm.provision "shell", run: "always", inline: "ifconfig eth1 192.168.56.151 netmask 255.255.255.0 up" 
+    vm01.vm.provision "ansible_local" do |ansible|
       ansible.playbook = "vm01-playbook.yml"
-	  ansible.limit = 'all,localhost'
-	end
-	vm01.vm.provider :virtualbox do |vb|
+      ansible.limit = 'all,localhost'
+    end
+    vm01.vm.provider :virtualbox do |vb|
       vb.customize ["modifyvm", :id, "--cpus", 3]
       vb.customize ["modifyvm", :id, "--memory", 4096]
       vb.customize ["modifyvm", :id, "--name", "vm01"]
-	end
+    end
   end
   config.vm.define "vm02" do |vm02|
     vm02.vm.box = "alse-vanilla-1.7.2-virtualbox-mg7.2.0.box"
     vm02.vm.network "forwarded_port", guest: 80, host: 8081
     vm02.vm.network "forwarded_port", guest: 443, host: 8243
-	vm02.vm.network :forwarded_port, guest: 22, host: 10222, id: "ssh"
-	vm02.vm.hostname = "vm02.test.local"
-	vm02.vm.network "private_network", ip: "192.168.56.152", name: "VirtualBox Host-Only Ethernet Adapter", adapter:2,  auto_config: false, hostname: true
-	vm02.vm.provision "shell", inline: "ifconfig eth1 192.168.56.152 netmask 255.255.255.0 up", run: "always"
-	vm02.vm.provision "ansible_local" do |ansible|
+    vm02.vm.network :forwarded_port, guest: 22, host: 10222, id: "ssh"
+    vm02.vm.hostname = "vm02.test.local"
+    vm02.vm.network "private_network", ip: "192.168.56.152", name: "VirtualBox Host-Only Ethernet Adapter", adapter:2,  auto_config: false, hostname: true
+    vm02.vm.provision "shell", inline: "ifconfig eth1 192.168.56.152 netmask 255.255.255.0 up", run: "always"
+    vm02.vm.provision "ansible_local" do |ansible|
       ansible.playbook = "vm02-playbook.yml"
-	  ansible.limit = 'all,localhost'
-	end
-	vm02.vm.provider :virtualbox do |vb|
+      ansible.limit = 'all,localhost'
+    end
+    vm02.vm.provider :virtualbox do |vb|
       vb.customize ["modifyvm", :id, "--cpus", 2]
       vb.customize ["modifyvm", :id, "--memory", 3072]
       vb.customize ["modifyvm", :id, "--name", "vm02"]
@@ -65,13 +65,13 @@ Vagrant.configure("2") do |config|
     vm03.vm.network "forwarded_port", guest: 443, host: 8343
     vm03.vm.network :forwarded_port, guest: 22, host: 10223, id: "ssh"
     vm03.vm.hostname = "vm03.test.local"
-	vm03.vm.network "private_network", ip: "192.168.56.153", name: "VirtualBox Host-Only Ethernet Adapter", adapter:2,  auto_config: false, hostname: true
-	vm03.vm.provision "shell", inline: "ifconfig eth1 192.168.56.153 netmask 255.255.255.0 up", run: "always"
-	vm03.vm.provision "ansible_local" do |ansible|
+    vm03.vm.network "private_network", ip: "192.168.56.153", name: "VirtualBox Host-Only Ethernet Adapter", adapter:2,  auto_config: false, hostname: true
+    vm03.vm.provision "shell", inline: "ifconfig eth1 192.168.56.153 netmask 255.255.255.0 up", run: "always"
+    vm03.vm.provision "ansible_local" do |ansible|
       ansible.playbook = "vm03-playbook.yml"
-	  ansible.limit = 'all,localhost'
-	end
-	vm03.vm.provider :virtualbox do |vb|
+      ansible.limit = 'all,localhost'
+    end
+    vm03.vm.provider :virtualbox do |vb|
       vb.customize ["modifyvm", :id, "--cpus", 2]
       vb.customize ["modifyvm", :id, "--memory", 2048]
       vb.customize ["modifyvm", :id, "--name", "vm03"]
