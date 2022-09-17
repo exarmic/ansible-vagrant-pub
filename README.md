@@ -35,7 +35,7 @@
 * Загрузить и установить установщик Vagrant: https://www.vagrantup.com/downloads. Vagrant по умолчанию поддерживает гипервизор (provider) VirtualBox. Я использовал Vagrant 2.3.0.
 * Загрузить и установить установщик VirtualBox и Extention Pack : https://download.virtualbox.org/virtualbox/, документация по установке https://www.virtualbox.org/manual/ch01.html#intro-installing. Я использовал Version 6.1.36 r152435 (Qt5.6.2).
 * Убедиться что в VirtualBox создана сеть "VirtualBox Host-Only Ethernet Adapter" в адресном пространстве 192.168.56.0/24.
-* Подготовить base box согласно [описанию](#%D0%BF%D1%80%D0%BE%D1%86%D0%B5%D0%B4%D1%83%D1%80%D0%B0-%D0%BF%D0%BE%D0%B4%D0%B3%D0%BE%D1%82%D0%BE%D0%B2%D0%BA%D0%B8-base-box), или взять подготовленный.
+* Подготовить "base box" согласно [описанию](#%D0%BF%D1%80%D0%BE%D1%86%D0%B5%D0%B4%D1%83%D1%80%D0%B0-%D0%BF%D0%BE%D0%B4%D0%B3%D0%BE%D1%82%D0%BE%D0%B2%D0%BA%D0%B8-base-box), или взять подготовленный.
 * Загрузить Vagrantfile и Ansible playbook'и: https://github.com/exarmic/ansible-vagrant-pub 
 * Создать каталог, скопировать в него распокаванные фаилы Git и подготовленный образ "base box".  
 * Перейти в каталог и запустить vagrant up. Первичный запуск окружения будет достаточно длительный (в моих тестах порядка 20-30 мин.), так как будут загружаться и устанавливаться пакеты FreeIPA server, FreeIPA client, Foreman, Docker и контейнеры приложений для Zabbix. 
