@@ -38,7 +38,7 @@
 * Подготовить "base box" согласно [описанию](#%D0%BF%D1%80%D0%BE%D1%86%D0%B5%D0%B4%D1%83%D1%80%D0%B0-%D0%BF%D0%BE%D0%B4%D0%B3%D0%BE%D1%82%D0%BE%D0%B2%D0%BA%D0%B8-base-box), или взять подготовленный.
 * Загрузить Vagrantfile и Ansible playbook'и: https://github.com/exarmic/ansible-vagrant-pub 
 * Создать каталог, скопировать в него распокаванные фаилы Git и подготовленный образ "base box".  
-* Перейти в каталог и запустить vagrant up. Первичный запуск окружения будет достаточно длительный (в моих тестах порядка 20-30 мин.) из-за загрузки и установки пакетов FreeIPA server, FreeIPA client, Foreman, Docker и контейнеров приложений для Zabbix в ходе выполнения playbook'ов 
+* Перейти в каталог и запустить vagrant up. Первичный запуск окружения будет достаточно длительный (в моих тестах порядка 20-30 мин.) из-за загрузки и установки пакетов FreeIPA server, FreeIPA client, Foreman, Docker и контейнеров приложений для Zabbix в ходе выполнения playbook'ов. Стандартный вывод при успешном запуске [тут](/vagrant-up-stdout).
 * Добавить запись "192.168.56.151 vm01.test.local" в C:\Windows\System32\drivers\etc\hosts
 * Подключение:
 
@@ -55,7 +55,7 @@
 | Ресурсы | 4 ГБ ОЗУ, 3vCPU | 3 ГБ ОЗУ, 2vCPU | 2 ГБ ОЗУ, 2vCPU |
 | Adapter 1 (eth0), Проброс портов "порт ВМ":"порт хоста" | 80:8080, 22:10221, 443:8143 | 80:8081, 22:10222, 443:8243 | 80:8082, 22:10223, 443:8343 |
 | Adapter 2 (eth1)  | 192.168.56.151 | 192.168.56.152 | 192.168.56.153 |
-| Используемый playbook | vm01-playbook.yml | vm02-playbook.yml | vm03-playbook.ym  |
+| Используемый playbook | [vm01-playbook.yml](/vm01-playbook.yml) | [vm02-playbook.yml](/vm02-playbook.yml) | [vm03-playbook.yml](/vm03-playbook.yml)  |
 | Основные устанавливаемые пакеты | FreeIPA Server | FreeIPA Client, Foreman | Docker+Zabbix App containers |
 
 
