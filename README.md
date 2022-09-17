@@ -1,6 +1,9 @@
 ## Ansible + Vagrant. 
 
-Требования ТЗ [тут](/task.md).
+* Требования ТЗ [тут](/task.md).
+* Для быстрого перехода на инструкцию по запуску нажмите [сюда])#%D0%B7%D0%B0%D0%BF%D1%83%D1%81%D0%BA-%D1%81%D1%82%D0%B5%D0%BD%D0%B4%D0%B0-%D0%B8-%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B5%D0%BD%D0%B8%D0%B5)
+
+#### Общее описание
 
 Выполнение задания подразумевает использовать подход IaC. В нашем задании основными инструментами для запуска окружения должны быть Vagrant, VirtualBox, Ansible, Docker. В моем случае Vagrant и VirtualBox устанавливаются на Windows, а Ansible и Docker настраивают приложения и разварачивают инфраструктуру внутри виртуальных машин. 
 
@@ -30,8 +33,8 @@
   * https://hub.docker.com/_/mysql
   * https://www.devopsschool.com/blog/how-to-install-zabbix-server-and-dashboard-using-docker/
 
+Vagrantfile описывает 3 виртуальные машины:
 
-В общем Vagrantfile описывает 3 виртуальные машины:
 | Свойство\виртуальная машина  | VM01 | VM02  | VM03 |
 |----------------|:---------:|:-----------:|:---------:|
 | Ресурсы | 4 ГБ ОЗУ, 3vCPU | 3 ГБ ОЗУ, 2vCPU | 2 ГБ ОЗУ, 2vCPU |
@@ -41,6 +44,7 @@
 | Основные устанавливаемые пакеты | FreeIPA Server | FreeIPA Client, Foreman | Docker+Zabbix App containers |
 
 #### Замечания 
+
 * Host-only сеть не обозначена в задании но необходима:
 1) Для регистрации клиентов (vm02) в домене
 2) Для доступа до админской WEB страницы FreeIPA Server. Также  необходимо добавить запись "192.168.56.151 vm01.test.local" в C:\Windows\System32\drivers\etc\hosts.  Модуль rewrite на Apache редиректит на https://vm01.test.local/ipa/ui/, таким образом нет возможности доступа через localhost:8080. Даже добавление записи "127.0.0.1 vm01.test.local" в hosts Windows не решает проблему так как редирект идет на 443 порт. На проработать - изучить настройки apache для воможности обращения к админке сервера FreeIPA по адресу localhost
@@ -48,6 +52,7 @@
 * Добавлен проброс 22 (sshd) портов для более предсказуемого поведения
 
 #### Запуск стенда и подключение:
+
 (Я использую Windows)
 * Загрузить и установить установщик Vagrant: https://www.vagrantup.com/downloads. Vagrant по умолчанию поддерживает гипервизор (provider) VirtualBox. Я использовал Vagrant 2.3.0.
 * Загрузить и установить установщик VirtualBox и Extention Pack : https://download.virtualbox.org/virtualbox/, документация по установке https://www.virtualbox.org/manual/ch01.html#intro-installing. Я использовал Version 6.1.36 r152435 (Qt5.6.2).
@@ -66,7 +71,8 @@
 | FreeIPA Server | Foreman | Zabbix |
 
 
-### Процедура подготовки base box
+#### Процедура подготовки base box
+
 Загружаем последний образ Astra Linux под VirtualBox отсюда: https://vault.astralinux.ru/images/alse/virtualbox/ (user/pass = astra/astra) и импортируем в VirtualBox. Интерфейс Adapter 1 (eth0) ВМ по умоляанию в режиме NAT - то что нам нужно. Добавляем на ВМ Adapter 2 (eth1) в режиме Host-only Adapter убедиться что имя сети "VirtualBox Host-Only Ethernet Adapter". 
 Vagrant предъявляет следующие требования к base box:
 * VirtualBox https://www.vagrantup.com/docs/providers/virtualbox/boxes. "Adapter 1"  (eth0 в ОС) должен быть в режиме NAT.
@@ -139,12 +145,10 @@ sudo systemctl start myservice
    * echo "en_US.UTF-8 UTF-8" | sudo tee -a /etc/locale.gen && sudo locale-gen # для VM02 для установки Foreman
 
  
- ### Упаковка в "base box"
- * cd c:\Arseniy\Ansible+Vagrant\images\
- * vagrant package --base alse-vanilla-1.7.2-virtualbox-mg7.2.0 <br/>
- * mkdir ..\presale-proj <br/>
- * copy package.box ..\presale-proj\alse-vanilla-1.7.2-virtualbox-mg7.2.0.box <br/>
- * cd ..\presale-proj <br/>
+* Упаковка в "base box"
+   * cd c:\Arseniy\Ansible+Vagrant\images\
+   * vagrant package --base alse-vanilla-1.7.2-virtualbox-mg7.2.0 <br/> # где "alse-vanilla-1.7.2-virtualbox-mg7.2.0" - имя виртуальной машины в VirtualBox
+
 
  
 
