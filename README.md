@@ -23,7 +23,7 @@ Vagrant запускает виртуальные мышины использу�
 * Zabbix
   * https://www.devopsschool.com/blog/how-to-install-zabbix-server-and-dashboard-using-docker/
 
-### Запуск стенда:
+#### Запуск стенда:
 Загрузить и установить (я использую для Windows):
 * Загрузить и установить установщик Vagrant: https://www.vagrantup.com/downloads. Vagrant по умолчанию поддерживает гипервизор (provider) VirtualBox. Я использовал Vagrant 2.3.0.
 * Загрузить и установить установщик VirtualBox и Extention Pack : https://download.virtualbox.org/virtualbox/, документация по установке https://www.virtualbox.org/manual/ch01.html#intro-installing. Я использовал Version 6.1.36 r152435 (Qt5.6.2).
