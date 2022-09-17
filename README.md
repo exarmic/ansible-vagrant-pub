@@ -50,7 +50,7 @@ Host-only сеть необходима:
 
 ### Процедура подготовки base box
 Загружаем последний образ Astra Linux под VirtualBox отсюда: https://vault.astralinux.ru/images/alse/virtualbox/ (user/pass = astra/astra) и импортируем в VirtualBox. Vagrant предъявляет следующие требования к base box:
-* VirtualBox специфичные требования https://www.vagrantup.com/docs/providers/virtualbox/boxes (Убедиться что первый ethernet интерфейс - eth0 - настроен как NAT!!!)
+* VirtualBox специфичные требования https://www.vagrantup.com/docs/providers/virtualbox/boxes. Убедиться что "Adapter 1"  (eth0 в ОС) в режиме NAT!
 * Общие рекомендации к base box https://www.vagrantup.com/docs/boxes/base.
 
 Собранный base box Astra Linux для выполнения задания включает следуюшие изменения:
