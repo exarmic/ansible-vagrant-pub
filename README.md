@@ -34,6 +34,7 @@
   * https://hub.docker.com/r/zabbix/zabbix-web-apache-mysql
   * https://hub.docker.com/_/mysql
   * https://www.devopsschool.com/blog/how-to-install-zabbix-server-and-dashboard-using-docker/
+  * https://github.com/zabbix/zabbix-docker/blob/6.2/README.md # Zabbix отходит от монолитного апплианса к нескольким контейнерам  
 
 [Vagrantfile](/Vagrantfile) описывает 3 виртуальные машины:
 
