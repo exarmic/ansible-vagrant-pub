@@ -63,7 +63,8 @@
  * Для доступа до админской WEB страницы FreeIPA Server. Также  необходимо добавить запись "192.168.56.151 vm01.test.local" в C:\Windows\System32\drivers\etc\hosts.  Модуль rewrite на Apache редиректит на https://vm01.test.local/ipa/ui/, таким образом нет возможности доступа через localhost:8080. Даже добавление записи "127.0.0.1 vm01.test.local" в hosts Windows не решает проблему так как редирект идет на 443 порт. На проработать - изучить настройки apache для воможности обращения к админке сервера FreeIPA по адресу localhost
 * Foreman работает на 443 порту по https, Таким образом помимо обозначенного в задании (и вроде как бесполезного) проброса 80:8081 добавлен проброс портов 443:8243.
 * Добавлен проброс 22 (sshd) портов для более предсказуемого поведения
-* В конечном стенде запуск zabbix  оставил с использованием контейнеров dockerhub. Это наиболее оптимальный вариант. Сам Zabbix отходит от монолитного апплианса к нескольким контейнерам (привет микросервисы), [пруф](https://github.com/zabbix/zabbix-docker/blob/6.2/README.md).  При этом следуя требованиям задания подготовил [Dockerfile](/Dockerfile) для сборки zabbix в единый аплианс на базе ALSE docker образа.
+* В конечном стенде запуск zabbix  оставил с использованием контейнеров dockerhub. Это наиболее оптимальный вариант. Сам Zabbix отходит от монолитного апплианса к нескольким контейнерам (привет микросервисы), [пруф](https://github.com/zabbix/zabbix-docker/blob/6.2/README.md).  При этом следуя требованиям задания подготовил [Dockerfile](/Dockerfile) для сборки zabbix в единый аплианс на базе ALSE docker образа. Инструкция по сборке по ссылке. https://vault.astralinux.ru/images/alse/docker/.
+
 
 
 #### Запуск стенда и подключение:
@@ -167,6 +168,14 @@ vagrant package --base alse-vanilla-1.7.2-virtualbox-mg7.2.0
 ```
 где "alse-vanilla-1.7.2-virtualbox-mg7.2.0" - имя виртуальной машины в VirtualBox
 
-
- 
+#### Сборка контейнера zabbix с помощью Dockerfile
+Пакет docker должен быть установлен (https://wiki.astralinux.ru/pages/viewpage.action?pageId=158601444)
+```
+wget https://github.com/exarmic/ansible-vagrant-pub/blob/main/Dockerfile
+wget https://vault.astralinux.ru/images/alse/docker/alse-slim-1.7.2-docker-mg7.2.0.tar
+docker import alse-slim-1.7.2-docker-mg7.2.0.tar asle-slim:1.7.2
+docker build -t my-alse-zabbix:1.0 - < Dockerfile
+run -p 8082:80 --hostname=zabbix-full-02 --name=zabbix-full-02 -d -t  my-alse-zabbix:1.0 
+docker exec -it  zabbix-full-02 /bin/bash
+ ```
 
