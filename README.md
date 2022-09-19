@@ -170,12 +170,22 @@ vagrant package --base alse-vanilla-1.7.2-virtualbox-mg7.2.0
 
 #### Сборка контейнера zabbix с помощью Dockerfile
 Пакет docker должен быть установлен (https://wiki.astralinux.ru/pages/viewpage.action?pageId=158601444)
+* Загрузка Dockerfile и базового контейнера ALSE
 ```
 wget https://github.com/exarmic/ansible-vagrant-pub/blob/main/Dockerfile
 wget https://vault.astralinux.ru/images/alse/docker/alse-slim-1.7.2-docker-mg7.2.0.tar
+```
+* Импорт базового контейнера ALSE в локальный регистр:
+```
 docker import alse-slim-1.7.2-docker-mg7.2.0.tar asle-slim:1.7.2
+```
+* Запуск сборки аплианса Zabbix с использованием Dockerfile:
+```
 docker build -t my-alse-zabbix:1.0 - < Dockerfile
+```
+* Запуск контейнера Zabbix и подключение к терминалу, -p [порт хостовой ОС:порт внутри контейнера]
+```
 run -p 8082:80 --hostname=zabbix-full-02 --name=zabbix-full-02 -d -t  my-alse-zabbix:1.0 
 docker exec -it  zabbix-full-02 /bin/bash
- ```
+```
 
