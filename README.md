@@ -29,12 +29,16 @@
   * https://docs.ansible.com/ansible/latest/collections/ansible/builtin/shell_module.html # выполнение команд в shell
   * https://docs.ansible.com/ansible/latest/user_guide/playbooks_conditionals.html # использование условия when
   * https://docs.ansible.com/ansible/latest/collections/ansible/builtin/lineinfile_module.html # замена 
-* Zabbix
+* Zabbix + dockerhub
   * https://hub.docker.com/r/zabbix/zabbix-server-mysql
   * https://hub.docker.com/r/zabbix/zabbix-web-apache-mysql
   * https://hub.docker.com/_/mysql
   * https://www.devopsschool.com/blog/how-to-install-zabbix-server-and-dashboard-using-docker/
-  * https://github.com/zabbix/zabbix-docker/blob/6.2/README.md # Zabbix отходит от монолитного апплианса к нескольким контейнерам  
+  *
+* Zabbix + Dockerfile 
+  * https://wiki.astralinux.ru/pages/viewpage.action?pageId=38699775
+  * https://devopscube.com/keep-docker-container-running/
+  * https://github.com/docker-library/mysql/blob/e03765d83c1fddcfb48fa47dda6171c50b563382/8.0/Dockerfile.debian
 
 [Vagrantfile](/Vagrantfile) описывает 3 виртуальные машины:
 
@@ -59,6 +63,8 @@
  * Для доступа до админской WEB страницы FreeIPA Server. Также  необходимо добавить запись "192.168.56.151 vm01.test.local" в C:\Windows\System32\drivers\etc\hosts.  Модуль rewrite на Apache редиректит на https://vm01.test.local/ipa/ui/, таким образом нет возможности доступа через localhost:8080. Даже добавление записи "127.0.0.1 vm01.test.local" в hosts Windows не решает проблему так как редирект идет на 443 порт. На проработать - изучить настройки apache для воможности обращения к админке сервера FreeIPA по адресу localhost
 * Foreman работает на 443 порту по https, Таким образом помимо обозначенного в задании (и вроде как бесполезного) проброса 80:8081 добавлен проброс портов 443:8243.
 * Добавлен проброс 22 (sshd) портов для более предсказуемого поведения
+* В конечном стенде запуск zabbix  оставил с использованием контейнеров dockerhub. Это наиболее оптимальный вариант. Сам Zabbix отходит от монолитного апплианса к нескольким контейнерам (привет микросервисы), [пруф](https://github.com/zabbix/zabbix-docker/blob/6.2/README.md).  При этом следуя требованиям задания подготовил [Dockerfile](/Dockerfile) для сборки zabbix в единый аплианс на базе ALSE docker образа.
+
 
 #### Запуск стенда и подключение:
 
