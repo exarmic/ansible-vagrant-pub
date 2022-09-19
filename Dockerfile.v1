@@ -1,0 +1,13 @@
+FROM asle-slim:1.7.2
+
+
+RUN	apt update -y && \
+	export TZ=Europe/Moscow && \
+    	ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && \
+    	echo $TZ > /etc/timezone && \
+	apt-get install apache2 -y && \
+	apt-get install sudo -y && \
+	apt install zabbix-server-pgsql zabbix-frontend-php php-pgsql -y && \
+	sed -i 's/;date.timezone =/date.timezone = Europe\/Moscow/g' /etc/php/*/apache2/php.ini && \
+	sed -i 's/# AstraMode on/AstraMode off/g' /etc/apache2/apache2.conf && \
+	/etc/init.d/apache2 start 

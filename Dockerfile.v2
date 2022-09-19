@@ -1,0 +1,12 @@
+FROM my-alse-zabbix:1.0
+
+
+RUN	/etc/init.d/apache2 start 
+RUN	["/bin/bash", "-c",  "echo '# TYPE  DATABASE        USER            ADDRESS                 METHOD' >> /etc/postgresql/*/main/pg_hba.conf" ]
+RUN 	["/bin/bash", "-c",  "echo 'local   zabbix          zabbix                                  trust' >> /etc/postgresql/*/main/pg_hba.conf" ]
+RUN	["/bin/bash", "-c",  "echo '# IPv4 local connections:' >> /etc/postgresql/*/main/pg_hba.conf" ]
+RUN     ["/bin/bash", "-c",  "echo 'host    zabbix          zabbix          127.0.0.1/32            trust' >> /etc/postgresql/*/main/pg_hba.conf" ] 
+
+RUN	apt-get install parsec -y && \
+	sed -i 's/zero_if_notfound: no/zero_if_notfound: yes/g' /etc/parsec/mswitch.conf 
+

@@ -1,0 +1,32 @@
+FROM my-alse-zabbix:1.2
+
+
+RUN	/etc/init.d/postgresql start && \
+	sudo -u postgres psql -c 'CREATE DATABASE ZABBIX;' && \
+	sudo -u postgres psql -c "CREATE USER zabbix WITH ENCRYPTED PASSWORD '12345678';" && \
+	sudo -u postgres psql -c "GRANT ALL ON DATABASE zabbix to zabbix;" && \
+	export PGPASSWORD=12345678 && \
+	zcat /usr/share/zabbix-server-pgsql/schema.sql.gz | psql -h localhost zabbix zabbix && \
+	zcat /usr/share/zabbix-server-pgsql/images.sql.gz | psql -h localhost zabbix zabbix && \
+	zcat /usr/share/zabbix-server-pgsql/data.sql.gz | psql -h localhost zabbix zabbix && \
+	a2enconf zabbix-frontend-php && \
+	service apache2 start && \
+	cp /usr/share/zabbix/conf/zabbix.conf.php.example /etc/zabbix/zabbix.conf.php && \
+	chown www-data:www-data /etc/zabbix/zabbix.conf.php && \
+	sed -i 's/MYSQL/POSTGRESQL/g' /etc/zabbix/zabbix.conf.php && \
+	sed -i -r "s/(^.*)PASSWORD(.*=)(.*)/\1PASSWORD\2 \'12345678\'\;/g" /etc/zabbix/zabbix.conf.php && \
+	service apache2 reload && \
+	update-rc.d zabbix-server defaults && \
+	service zabbix-server start 
+
+EXPOSE 80
+
+#CMD ["service postgresql start"]
+#CMD ["service apache2 start"]
+#CMD ["service zabbix-server start"]
+
+ENTRYPOINT service postgresql start && service apache2 start && service zabbix-server start && bash
+#CMD ["/bin/bash", "-c", "service postgresql start"]
+#CMD ["/bin/bash", "-c", "service apache2 start"]
+#CMD ["/bin/bash", "-c", "service zabbix-server start"]
+
