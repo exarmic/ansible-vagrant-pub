@@ -3,7 +3,7 @@
 * Задание [тут](/task.md).
 * Для быстрого перехода на инструкцию по запуску нажмите [сюда](#%D0%B7%D0%B0%D0%BF%D1%83%D1%81%D0%BA-%D1%81%D1%82%D0%B5%D0%BD%D0%B4%D0%B0-%D0%B8-%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B5%D0%BD%D0%B8%D0%B5)
 
-#### Общее описание выполнения
+#### Общее описание выполнения:
 
 В процессе выполнения происходит подготовка стенда из 3-ех виртуальных машин по заданию [по сслыке](/task.md).
 
@@ -51,19 +51,20 @@
 | Основные устанавливаемые пакеты | FreeIPA Server | FreeIPA Client, Foreman | Docker+Zabbix App containers |
 
 #### Основные документы используемые при подготовке Vagrantfile:
+
 * https://www.vagrantup.com/docs/boxes/base # информация по base box
 * https://www.vagrantup.com/docs/networking # сетевой аспект ВМ
 * https://www.vagrantup.com/docs/vagrantfile/machine_settings # параметры ВМ
 * https://www.vagrantup.com/docs/provisioning/ansible_local # провижиониг через ansible
 
-#### Замечания 
+#### Замечания:
 
 * Host-only сеть не обозначена в задании но необходима:
  * Для регистрации клиентов (vm02) в домене.
  * Для доступа до админской WEB страницы FreeIPA Server. Также  необходимо добавить запись "192.168.56.151 vm01.test.local" в C:\Windows\System32\drivers\etc\hosts.  Модуль rewrite на Apache редиректит на https://vm01.test.local/ipa/ui/, таким образом нет возможности доступа через localhost:8080. Даже добавление записи "127.0.0.1 vm01.test.local" в hosts Windows не решает проблему так как редирект идет на 443 порт. На проработать - изучить настройки apache для воможности обращения к админке сервера FreeIPA по адресу localhost
 * Foreman работает на 443 порту по https, Таким образом помимо обозначенного в задании (и вроде как бесполезного) проброса 80:8081 добавлен проброс портов 443:8243.
 * Добавлен проброс 22 (sshd) портов для более предсказуемого поведения
-* В конечном стенде запуск zabbix  оставил с использованием контейнеров dockerhub. Это наиболее оптимальный вариант. Сам Zabbix отходит от монолитного апплианса к нескольким контейнерам (привет микросервисы), [пруф](https://github.com/zabbix/zabbix-docker/blob/6.2/README.md).  При этом следуя требованиям задания подготовил [Dockerfile](/Dockerfile) для сборки zabbix в единый аплианс на базе ALSE docker образа. Инструкция по сборке [ниже](#%D1%81%D0%B1%D0%BE%D1%80%D0%BA%D0%B0-%D0%BA%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D0%B0-zabbix-%D1%81-%D0%BF%D0%BE%D0%BC%D0%BE%D1%89%D1%8C%D1%8E-dockerfile)
+* В конечном стенде запуск zabbix  оставил с использованием контейнеров dockerhub. Это наиболее оптимальный вариант. Сам Zabbix отходит от монолитного апплианса к нескольким контейнерам (привет микросервисы), [пруф](https://github.com/zabbix/zabbix-docker/blob/6.2/README.md).  При этом следуя требованиям задания подготовил [Dockerfile](/Dockerfile) для сборки zabbix в единый аплианс на базе ALSE docker образа. Инструкция по сборке [ниже](#%D1%81%D0%B1%D0%BE%D1%80%D0%BA%D0%B0-%D0%BA%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D0%B0-zabbix-%D1%81-%D0%BF%D0%BE%D0%BC%D0%BE%D1%89%D1%8C%D1%8E-dockerfile).
 
 
 
@@ -87,7 +88,7 @@
 | FreeIPA Server | Foreman | Zabbix |
 
 
-#### Процедура подготовки base box
+#### Процедура подготовки base box:
 
 Загружаем последний образ Astra Linux под VirtualBox отсюда: https://vault.astralinux.ru/images/alse/virtualbox/ (user/pass = astra/astra) и импортируем в VirtualBox. Интерфейс Adapter 1 (eth0) ВМ по умоляанию в режиме NAT - то что нам нужно. Добавляем на ВМ Adapter 2 (eth1) в режиме Host-only Adapter убедиться что имя сети "VirtualBox Host-Only Ethernet Adapter". 
 Vagrant предъявляет следующие требования к base box:
@@ -168,7 +169,8 @@ vagrant package --base alse-vanilla-1.7.2-virtualbox-mg7.2.0
 ```
 где "alse-vanilla-1.7.2-virtualbox-mg7.2.0" - имя виртуальной машины в VirtualBox
 
-#### Сборка контейнера zabbix с помощью Dockerfile
+#### Сборка контейнера zabbix с помощью Dockerfile:
+
 Пакет docker должен быть установлен (https://wiki.astralinux.ru/pages/viewpage.action?pageId=158601444)
 * Загрузка Dockerfile и базового контейнера ALSE
 ```
