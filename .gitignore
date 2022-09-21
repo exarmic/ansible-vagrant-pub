@@ -1,6 +1,5 @@
 packer_templates/
-packer-centos-main/
-scripts-temp/	
+packer-centos-main/	
 *.iso
 *.box
 *.ovf
