@@ -4,7 +4,7 @@
       "type": "virtualbox-ovf",
       "source_path": "{{user `base_name`}}.ova",
       "output_directory": "",
-	  "output_filename": "{{user `out_image_name`}}",
+      "output_filename": "{{user `out_image_name`}}",
       "vm_name": "{{user `base_name`}}-{{isotime `2006-01-02`}}",
       "format": "ova",
       "ssh_username": "{{user `user`}}",
@@ -21,26 +21,25 @@
     {
       "type": "shell",
       "scripts": [
-	    ".\\scripts\\vagrant-user.sh",
-		".\\scripts\\install-packages.sh",
-        ".\\scripts\\vagrant.sh",
-		".\\scripts\\sshd.sh"
+           ".\\scripts\\vagrant-user.sh",
+	   ".\\scripts\\install-packages.sh",
+	   ".\\scripts\\vagrant.sh",
+	   ".\\scripts\\sshd.sh"
       ]
-	}
+     }
   ],
   
   "post-processors": [
     {
       "output": "{{user `base_name`}}.{{.Provider}}.box",
       "type": "vagrant",
-	  "vagrantfile_template_generated": "true"
     }
   ],
  
  "variables" : {
-	"base_name": "alse-vanilla-1.7.2-vbfrom-qcow2",
-	"image_name": "{{user `base_name`}}.ova",
-	"out_image_name": "{{user `base_name`}}-{{isotime `2006-01-02`}}",
+    "base_name": "alse-vanilla-1.7.2-vbfrom-qcow2",
+    "image_name": "{{user `base_name`}}.ova",
+     "out_image_name": "{{user `base_name`}}-{{isotime `2006-01-02`}}",
     "user": "astra",
     "pass": "astra",
     "memory": "4096",
