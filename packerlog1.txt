@@ -1,0 +1,195 @@
+2022/09/21 22:33:40 [INFO] Packer version: 1.7.10 [go1.17.6 windows amd64]
+2022/09/21 22:33:40 [TRACE] discovering plugins in c:\Arseniy\Ansible+Vagrant\packer
+2022/09/21 22:33:40 [TRACE] discovering plugins in C:\Users\exarmic\AppData\Roaming\packer.d\plugins
+2022/09/21 22:33:40 [TRACE] discovering plugins in .
+2022/09/21 22:33:40 [INFO] PACKER_CONFIG env var not set; checking the default config file path
+2022/09/21 22:33:40 [INFO] PACKER_CONFIG env var set; attempting to open config file: C:\Users\exarmic\AppData\Roaming\packer.config
+2022/09/21 22:33:40 [WARN] Config file doesn't exist: C:\Users\exarmic\AppData\Roaming\packer.config
+2022/09/21 22:33:40 [INFO] Setting cache directory: C:\Arseniy\GitHub\ansible-vagrant-pub\packer_cache
+e: cannot determine if process is in background: Process background check error: not implemented yet
+2022/09/21 22:33:40 [TRACE] Starting internal plugin packer-builder-virtualbox-ovf
+2022/09/21 22:33:40 Starting plugin: c:\Arseniy\Ansible+Vagrant\packer\packer.exe []string{"c:\\Arseniy\\Ansible+Vagrant\\packer\\packer.exe", "plugin", "packer-builder-virtualbox-ovf"}
+2022/09/21 22:33:40 Waiting for RPC address for: c:\Arseniy\Ansible+Vagrant\packer\packer.exe
+2022/09/21 22:33:40 packer.exe plugin: [INFO] Packer version: 1.7.10 [go1.17.6 windows amd64]
+2022/09/21 22:33:40 packer.exe plugin: [INFO] PACKER_CONFIG env var not set; checking the default config file path
+2022/09/21 22:33:40 packer.exe plugin: [INFO] PACKER_CONFIG env var set; attempting to open config file: C:\Users\exarmic\AppData\Roaming\packer.config
+2022/09/21 22:33:40 packer.exe plugin: [WARN] Config file doesn't exist: C:\Users\exarmic\AppData\Roaming\packer.config
+2022/09/21 22:33:40 packer.exe plugin: [INFO] Setting cache directory: C:\Arseniy\GitHub\ansible-vagrant-pub\packer_cache
+2022/09/21 22:33:40 packer.exe plugin: args: []string{"packer-builder-virtualbox-ovf"}
+2022/09/21 22:33:40 packer.exe plugin: Plugin port range: [10000,25000]
+2022/09/21 22:33:40 packer.exe plugin: Plugin address: tcp 127.0.0.1:10000
+2022/09/21 22:33:40 Received tcp RPC address for c:\Arseniy\Ansible+Vagrant\packer\packer.exe: addr is 127.0.0.1:10000
+2022/09/21 22:33:40 packer.exe plugin: Waiting for connection...
+2022/09/21 22:33:40 packer.exe plugin: Serving a plugin connection...
+2022/09/21 22:33:40 [TRACE] Starting internal plugin packer-provisioner-shell
+2022/09/21 22:33:40 Starting plugin: c:\Arseniy\Ansible+Vagrant\packer\packer.exe []string{"c:\\Arseniy\\Ansible+Vagrant\\packer\\packer.exe", "plugin", "packer-provisioner-shell"}
+2022/09/21 22:33:40 Waiting for RPC address for: c:\Arseniy\Ansible+Vagrant\packer\packer.exe
+2022/09/21 22:33:40 packer.exe plugin: [INFO] Packer version: 1.7.10 [go1.17.6 windows amd64]
+2022/09/21 22:33:40 packer.exe plugin: [INFO] PACKER_CONFIG env var not set; checking the default config file path
+2022/09/21 22:33:40 packer.exe plugin: [INFO] PACKER_CONFIG env var set; attempting to open config file: C:\Users\exarmic\AppData\Roaming\packer.config
+2022/09/21 22:33:40 packer.exe plugin: [WARN] Config file doesn't exist: C:\Users\exarmic\AppData\Roaming\packer.config
+2022/09/21 22:33:40 packer.exe plugin: [INFO] Setting cache directory: C:\Arseniy\GitHub\ansible-vagrant-pub\packer_cache
+2022/09/21 22:33:40 packer.exe plugin: args: []string{"packer-provisioner-shell"}
+2022/09/21 22:33:40 packer.exe plugin: Plugin port range: [10000,25000]
+2022/09/21 22:33:40 packer.exe plugin: Plugin address: tcp 127.0.0.1:10000
+2022/09/21 22:33:40 packer.exe plugin: Waiting for connection...
+2022/09/21 22:33:40 Received tcp RPC address for c:\Arseniy\Ansible+Vagrant\packer\packer.exe: addr is 127.0.0.1:10000
+2022/09/21 22:33:40 packer.exe plugin: Serving a plugin connection...
+2022/09/21 22:33:40 Preparing build: virtualbox-ovf
+2022/09/21 22:33:40 ui: virtualbox-ovf: output will be in this color.
+2022/09/21 22:33:40 ui: 
+2022/09/21 22:33:40 Build debug mode: false
+2022/09/21 22:33:40 Force build: true
+2022/09/21 22:33:40 On error: 
+2022/09/21 22:33:40 Waiting on builds to complete...
+2022/09/21 22:33:40 Starting build run: virtualbox-ovf
+2022/09/21 22:33:40 Running builder: virtualbox-ovf
+2022/09/21 22:33:40 [INFO] (telemetry) Starting builder virtualbox-ovf
+2022/09/21 22:33:40 packer.exe plugin: [DEBUG] builder/virtualbox: VBOX_MSI_INSTALL_PATH = C:\Program Files\Oracle\VirtualBox\
+2022/09/21 22:33:40 packer.exe plugin: VBoxManage path: C:\Program Files\Oracle\VirtualBox\VBoxManage.exe
+2022/09/21 22:33:40 ui: ==> virtualbox-ovf: Deleting previous output directory...
+2022/09/21 22:33:40 packer.exe plugin: Suppressing annoying messages in VirtualBox
+2022/09/21 22:33:40 packer.exe plugin: Executing VBoxManage: []string{"setextradata", "global", "GUI/SuppressMessages", "confirmInputCapture,remindAboutAutoCapture,remindAboutMouseIntegrationOff,remindAboutMouseIntegrationOn,remindAboutWrongColorDepth"}
+2022/09/21 22:33:40 packer.exe plugin: stdout:
+2022/09/21 22:33:40 packer.exe plugin: stderr:
+2022/09/21 22:33:40 packer.exe plugin: Executing VBoxManage: []string{"setextradata", "global", "GUI/UpdateCheckCount", "60"}
+2022/09/21 22:33:40 packer.exe plugin: stdout:
+2022/09/21 22:33:40 packer.exe plugin: stderr:
+2022/09/21 22:33:40 packer.exe plugin: Executing VBoxManage: []string{"setextradata", "global", "GUI/UpdateDate", "1 d, 2023-01-01, stable"}
+2022/09/21 22:33:40 packer.exe plugin: stdout:
+2022/09/21 22:33:40 packer.exe plugin: stderr:
+2022/09/21 22:33:40 packer.exe plugin: Executing VBoxManage: []string{"setextradata", "global", "GUI/RegistrationData", "triesLeft=0"}
+2022/09/21 22:33:40 packer.exe plugin: stdout:
+2022/09/21 22:33:40 packer.exe plugin: stderr:
+2022/09/21 22:33:40 packer.exe plugin: No floppy files specified. Floppy disk will not be made.
+2022/09/21 22:33:40 packer.exe plugin: No CD files specified. CD disk will not be made.
+2022/09/21 22:33:40 packer.exe plugin: VBoxManage --version output: 6.1.36r152435
+2022/09/21 22:33:40 packer.exe plugin: VirtualBox version: 6.1.36
+2022/09/21 22:33:40 packer.exe plugin: guest_additions_url is blank; querying driver for iso.
+2022/09/21 22:33:40 packer.exe plugin: Found Default Guest Additions ISO: C:\Program Files\Oracle\VirtualBox/VBoxGuestAdditions.iso
+2022/09/21 22:33:40 packer.exe plugin: Guest additions URL: C:\Program Files\Oracle\VirtualBox/VBoxGuestAdditions.iso
+2022/09/21 22:33:40 ui: ==> virtualbox-ovf: Retrieving Guest additions
+2022/09/21 22:33:40 ui: ==> virtualbox-ovf: Trying C:\Program Files\Oracle\VirtualBox/VBoxGuestAdditions.iso
+2022/09/21 22:33:40 packer.exe plugin: Acquiring lock for: file://C:/Program%20Files/Oracle/VirtualBox/VBoxGuestAdditions.iso (C:\Arseniy\GitHub\ansible-vagrant-pub\packer_cache\afa7695602909b267b26b23c8aefe12db6ee78b2.iso.lock)
+2022/09/21 22:33:40 ui: ==> virtualbox-ovf: Trying file://C:/Program%20Files/Oracle/VirtualBox/VBoxGuestAdditions.iso
+2022/09/21 22:33:40 ui: ==> virtualbox-ovf: file://C:/Program%20Files/Oracle/VirtualBox/VBoxGuestAdditions.iso => C:/Program Files/Oracle/VirtualBox/VBoxGuestAdditions.iso
+2022/09/21 22:33:40 packer.exe plugin: Leaving retrieve loop for Guest additions
+2022/09/21 22:33:40 ui: ==> virtualbox-ovf: Retrieving OVF/OVA
+2022/09/21 22:33:40 ui: ==> virtualbox-ovf: Trying alse-vanilla-1.7.2-virtualbox-mg7.2.0.ova
+2022/09/21 22:33:40 packer.exe plugin: Acquiring lock for: alse-vanilla-1.7.2-virtualbox-mg7.2.0.ova (C:\Arseniy\GitHub\ansible-vagrant-pub\packer_cache\82df298ee4ec1f81fb0786ab9df90167f1204ee6.ova.lock)
+2022/09/21 22:33:40 ui: ==> virtualbox-ovf: Trying alse-vanilla-1.7.2-virtualbox-mg7.2.0.ova
+2022/09/21 22:33:40 ui: ==> virtualbox-ovf: alse-vanilla-1.7.2-virtualbox-mg7.2.0.ova => C:/Arseniy/GitHub/ansible-vagrant-pub/alse-vanilla-1.7.2-virtualbox-mg7.2.0.ova
+2022/09/21 22:33:40 packer.exe plugin: Leaving retrieve loop for OVF/OVA
+2022/09/21 22:33:40 ui: ==> virtualbox-ovf: Importing VM: C:/Arseniy/GitHub/ansible-vagrant-pub/alse-vanilla-1.7.2-virtualbox-mg7.2.0.ova
+2022/09/21 22:33:40 packer.exe plugin: Executing VBoxManage: []string{"import", "C:/Arseniy/GitHub/ansible-vagrant-pub/alse-vanilla-1.7.2-virtualbox-mg7.2.0.ova", "--vsys", "0", "--vmname", "alse-vanilla-1.7.2-virtualbox-mg7.2.0-2022-09-21"}
+2022/09/21 22:33:48 packer.exe plugin: stdout: Disks:
+2022/09/21 22:33:48 packer.exe plugin:   vmdisk1	31457280000	-1	http://www.vmware.com/interfaces/specifications/vmdk.html#streamOptimized	alse-vanilla-1.7.2-virtualbox-mg7.2.0-disk001.vmdk	-1	-1
+2022/09/21 22:33:48 packer.exe plugin: 
+2022/09/21 22:33:48 packer.exe plugin: Virtual system 0:
+2022/09/21 22:33:48 packer.exe plugin:  0: Suggested OS type: "Debian_64"
+2022/09/21 22:33:48 packer.exe plugin:     (change with "--vsys 0 --ostype <type>"; use "list ostypes" to list all possible values)
+2022/09/21 22:33:48 packer.exe plugin:  1: VM name specified with --vmname: "alse-vanilla-1.7.2-virtualbox-mg7.2.0-2022-09-21"
+2022/09/21 22:33:48 packer.exe plugin:  2: Suggested VM group "/"
+2022/09/21 22:33:48 packer.exe plugin:     (change with "--vsys 0 --group <group>")
+2022/09/21 22:33:48 packer.exe plugin:  3: Suggested VM settings file name "C:\Users\exarmic\VirtualBox VMs\alse-vanilla-1.7.2-virtualbox-mg7.2.0\alse-vanilla-1.7.2-virtualbox-mg7.2.0.vbox"
+2022/09/21 22:33:48 packer.exe plugin:     (change with "--vsys 0 --settingsfile <filename>")
+2022/09/21 22:33:48 packer.exe plugin:  4: Suggested VM base folder "C:\Users\exarmic\VirtualBox VMs"
+2022/09/21 22:33:48 packer.exe plugin:     (change with "--vsys 0 --basefolder <path>")
+2022/09/21 22:33:48 packer.exe plugin:  5: Number of CPUs: 4
+2022/09/21 22:33:48 packer.exe plugin:     (change with "--vsys 0 --cpus <n>")
+2022/09/21 22:33:48 packer.exe plugin:  6: Guest memory: 2048 MB
+2022/09/21 22:33:48 packer.exe plugin:     (change with "--vsys 0 --memory <MB>")
+2022/09/21 22:33:48 packer.exe plugin:  7: Sound card (appliance expects "", can change on import)
+2022/09/21 22:33:48 packer.exe plugin:     (disable with "--vsys 0 --unit 7 --ignore")
+2022/09/21 22:33:48 packer.exe plugin:  8: USB controller
+2022/09/21 22:33:48 packer.exe plugin:     (disable with "--vsys 0 --unit 8 --ignore")
+2022/09/21 22:33:48 packer.exe plugin:  9: Network adapter: orig NAT, config 3, extra slot=0;type=NAT
+2022/09/21 22:33:48 packer.exe plugin: 10: IDE controller, type PIIX4
+2022/09/21 22:33:48 packer.exe plugin:     (disable with "--vsys 0 --unit 10 --ignore")
+2022/09/21 22:33:48 packer.exe plugin: 11: IDE controller, type PIIX4
+2022/09/21 22:33:48 packer.exe plugin:     (disable with "--vsys 0 --unit 11 --ignore")
+2022/09/21 22:33:48 packer.exe plugin: 12: SATA controller, type AHCI
+2022/09/21 22:33:48 packer.exe plugin:     (disable with "--vsys 0 --unit 12 --ignore")
+2022/09/21 22:33:48 packer.exe plugin: 13: Hard disk image: source image=alse-vanilla-1.7.2-virtualbox-mg7.2.0-disk001.vmdk, target path=alse-vanilla-1.7.2-virtualbox-mg7.2.0-disk001.vmdk, controller=12;port=0
+2022/09/21 22:33:48 packer.exe plugin:     (change target path with "--vsys 0 --unit 13 --disk path";
+2022/09/21 22:33:48 packer.exe plugin:     change controller with "--vsys 0 --unit 13 --controller <index>";
+2022/09/21 22:33:48 packer.exe plugin:     change controller port with "--vsys 0 --unit 13 --port <n>";
+2022/09/21 22:33:48 packer.exe plugin:     disable with "--vsys 0 --unit 13 --ignore")
+2022/09/21 22:33:48 packer.exe plugin: Successfully imported the appliance.
+2022/09/21 22:33:48 ui: ==> virtualbox-ovf: Mounting ISOs...
+2022/09/21 22:33:48 packer.exe plugin: stderr: 0%...10%...20%...30%...40%...50%...60%...70%...80%...90%...100%
+2022/09/21 22:33:48 packer.exe plugin: Interpreting C:\Arseniy\GitHub\ansible-vagrant-pub\alse-vanilla-1.7.2-virtualbox-mg7.2.0.ova...
+2022/09/21 22:33:48 packer.exe plugin: OK.
+2022/09/21 22:33:48 packer.exe plugin: 0%...10%...20%...30%...40%...50%...60%...70%...80%...90%...100%
+2022/09/21 22:33:48 packer.exe plugin: Not attaching guest additions since we're uploading.
+2022/09/21 22:33:48 ui:     virtualbox-ovf: No ISOs to mount; continuing...
+2022/09/21 22:33:48 packer.exe plugin: Looking for available port between 5900 and 6000 on 127.0.0.1
+2022/09/21 22:33:48 packer.exe plugin: Found available port: 5940 on IP: 127.0.0.1
+2022/09/21 22:33:48 packer.exe plugin: Executing VBoxManage: []string{"modifyvm", "alse-vanilla-1.7.2-virtualbox-mg7.2.0-2022-09-21", "--vrdeaddress", "127.0.0.1", "--vrdeauthtype", "null", "--vrde", "on", "--vrdeport", "5940"}
+2022/09/21 22:33:48 packer.exe plugin: stdout:
+2022/09/21 22:33:48 packer.exe plugin: stderr:
+2022/09/21 22:33:48 packer.exe plugin: No floppy disk, not attaching.
+2022/09/21 22:33:48 packer.exe plugin: Looking for available communicator (SSH, WinRM, etc) port between 2222 and 4444
+2022/09/21 22:33:48 packer.exe plugin: Found available port: 3991 on IP: 127.0.0.1
+2022/09/21 22:33:48 packer.exe plugin: Executing VBoxManage: []string{"modifyvm", "alse-vanilla-1.7.2-virtualbox-mg7.2.0-2022-09-21", "--nic1", "nat"}
+2022/09/21 22:33:48 packer.exe plugin: stdout:
+2022/09/21 22:33:48 packer.exe plugin: stderr:
+2022/09/21 22:33:48 ui: ==> virtualbox-ovf: Creating forwarded port mapping for communicator (SSH, WinRM, etc) (host port 3991)
+2022/09/21 22:33:48 packer.exe plugin: Executing VBoxManage: []string{"modifyvm", "alse-vanilla-1.7.2-virtualbox-mg7.2.0-2022-09-21", "--natpf1", "packercomm,tcp,127.0.0.1,3991,,22"}
+2022/09/21 22:33:48 packer.exe plugin: stdout:
+2022/09/21 22:33:48 packer.exe plugin: stderr:
+2022/09/21 22:33:48 ui: ==> virtualbox-ovf: Starting the virtual machine...
+2022/09/21 22:33:48 packer.exe plugin: Executing VBoxManage: []string{"startvm", "alse-vanilla-1.7.2-virtualbox-mg7.2.0-2022-09-21", "--type", "gui"}
+2022/09/21 22:33:58 packer.exe plugin: stdout: Waiting for VM "alse-vanilla-1.7.2-virtualbox-mg7.2.0-2022-09-21" to power on...
+2022/09/21 22:33:58 packer.exe plugin: VM "alse-vanilla-1.7.2-virtualbox-mg7.2.0-2022-09-21" has been successfully started.
+2022/09/21 22:33:58 packer.exe plugin: stderr:
+2022/09/21 22:33:58 ui: ==> virtualbox-ovf: Waiting 25s for boot...
+2022/09/21 22:34:23 ui: ==> virtualbox-ovf: Typing the boot command...
+2022/09/21 22:34:23 ui: ==> virtualbox-ovf: Using SSH communicator to connect: 127.0.0.1
+2022/09/21 22:34:23 packer.exe plugin: [INFO] Waiting for SSH, up to timeout: 1m0s
+2022/09/21 22:34:23 ui: ==> virtualbox-ovf: Waiting for SSH to become available...
+2022/09/21 22:34:23 packer.exe plugin: [INFO] Attempting SSH connection to 127.0.0.1:3991...
+2022/09/21 22:34:23 packer.exe plugin: [DEBUG] reconnecting to TCP connection for SSH
+2022/09/21 22:34:23 packer.exe plugin: [DEBUG] handshaking with SSH
+2022/09/21 22:35:23 ui error: ==> virtualbox-ovf: Timeout waiting for SSH.
+2022/09/21 22:35:23 packer.exe plugin: [DEBUG] SSH handshake err: Timeout during SSH handshake
+2022/09/21 22:35:23 packer.exe plugin: Executing VBoxManage: []string{"controlvm", "alse-vanilla-1.7.2-virtualbox-mg7.2.0-2022-09-21", "poweroff"}
+2022/09/21 22:35:24 packer.exe plugin: stdout:
+2022/09/21 22:35:24 packer.exe plugin: stderr: 0%...10%...20%...30%...40%...50%...60%...70%...80%...90%...100%
+2022/09/21 22:35:24 packer.exe plugin: failed to unlock port lockfile: close tcp 127.0.0.1:3991: use of closed network connection
+2022/09/21 22:35:24 ui: ==> virtualbox-ovf: Cleaning up floppy disk...
+2022/09/21 22:35:24 packer.exe plugin: failed to unlock port lockfile: close tcp 127.0.0.1:5940: use of closed network connection
+2022/09/21 22:35:24 ui: ==> virtualbox-ovf: Deregistering and deleting imported VM...
+2022/09/21 22:35:24 packer.exe plugin: Executing VBoxManage: []string{"unregistervm", "alse-vanilla-1.7.2-virtualbox-mg7.2.0-2022-09-21", "--delete"}
+2022/09/21 22:35:24 packer.exe plugin: stdout:
+2022/09/21 22:35:24 packer.exe plugin: stderr: VBoxManage.exe: error: Cannot unregister the machine 'alse-vanilla-1.7.2-virtualbox-mg7.2.0-2022-09-21' while it is locked
+2022/09/21 22:35:24 packer.exe plugin: VBoxManage.exe: error: Details: code VBOX_E_INVALID_OBJECT_STATE (0x80bb0007), component MachineWrap, interface IMachine, callee IUnknown
+2022/09/21 22:35:24 packer.exe plugin: VBoxManage.exe: error: Context: "Unregister(CleanupMode_DetachAllReturnHardDisksOnly, ComSafeArrayAsOutParam(aMedia))" at line 154 of file VBoxManageMisc.cpp
+2022/09/21 22:35:24 packer.exe plugin: Retryable error: VBoxManage error: VBoxManage.exe: error: Cannot unregister the machine 'alse-vanilla-1.7.2-virtualbox-mg7.2.0-2022-09-21' while it is locked
+2022/09/21 22:35:24 packer.exe plugin: VBoxManage.exe: error: Details: code VBOX_E_INVALID_OBJECT_STATE (0x80bb0007), component MachineWrap, interface IMachine, callee IUnknown
+2022/09/21 22:35:24 packer.exe plugin: VBoxManage.exe: error: Context: "Unregister(CleanupMode_DetachAllReturnHardDisksOnly, ComSafeArrayAsOutParam(aMedia))" at line 154 of file VBoxManageMisc.cpp
+2022/09/21 22:35:25 packer.exe plugin: [DEBUG] SSH wait cancelled. Exiting loop.
+2022/09/21 22:36:24 packer.exe plugin: Executing VBoxManage: []string{"unregistervm", "alse-vanilla-1.7.2-virtualbox-mg7.2.0-2022-09-21", "--delete"}
+2022/09/21 22:36:24 packer.exe plugin: stdout:
+2022/09/21 22:36:24 packer.exe plugin: stderr: 0%...10%...20%...30%...40%...50%...60%...70%...80%...90%...100%
+2022/09/21 22:36:24 ui: ==> virtualbox-ovf: Deleting output directory...
+2022/09/21 22:36:24 packer.exe plugin: Error removing output dir: remove c:\Arseniy\Ansible+Vagrant\images2\: The process cannot access the file because it is being used by another process.
+2022/09/21 22:36:26 packer.exe plugin: Error removing output dir: remove c:\Arseniy\Ansible+Vagrant\images2\: The process cannot access the file because it is being used by another process.
+2022/09/21 22:36:28 packer.exe plugin: Error removing output dir: remove c:\Arseniy\Ansible+Vagrant\images2\: The process cannot access the file because it is being used by another process.
+2022/09/21 22:36:30 packer.exe plugin: Error removing output dir: remove c:\Arseniy\Ansible+Vagrant\images2\: The process cannot access the file because it is being used by another process.
+2022/09/21 22:36:32 packer.exe plugin: Error removing output dir: remove c:\Arseniy\Ansible+Vagrant\images2\: The process cannot access the file because it is being used by another process.
+2022/09/21 22:36:34 [INFO] (telemetry) ending virtualbox-ovf
+2022/09/21 22:36:34 ui error: Build 'virtualbox-ovf' errored after 2 minutes 54 seconds: Timeout waiting for SSH.
+2022/09/21 22:36:34 ui: 
+==> Wait completed after 2 minutes 54 seconds
+2022/09/21 22:36:34 machine readable: error-count []string{"1"}
+2022/09/21 22:36:34 ui error: 
+==> Some builds didn't complete successfully and had errors:
+2022/09/21 22:36:34 machine readable: virtualbox-ovf,error []string{"Timeout waiting for SSH."}
+2022/09/21 22:36:34 ui error: --> virtualbox-ovf: Timeout waiting for SSH.
+2022/09/21 22:36:34 ui: 
+==> Builds finished but no artifacts were created.
+2022/09/21 22:36:34 [INFO] (telemetry) Finalizing.
+2022/09/21 22:36:34 waiting for all plugin processes to complete...
+2022/09/21 22:36:34 c:\Arseniy\Ansible+Vagrant\packer\packer.exe: plugin process exited
+2022/09/21 22:36:34 c:\Arseniy\Ansible+Vagrant\packer\packer.exe: plugin process exited
