@@ -1,0 +1,5 @@
+C:\Program Files\Oracle\VirtualBox\VBoxManage.exe" import ..\images\alse-vanilla-1.7.2-virtualbox-mg7.2.0.ova --vsys 0 --eula accept --vmname vm22
+
+C:\Program Files\Oracle\VirtualBox\VBoxManage.exe" list vms
+
+c:\Arseniy\Ansible+Vagrant\presale-proj>vagrant package --base vm22 --output vm22.box
