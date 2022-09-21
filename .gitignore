@@ -6,6 +6,5 @@ packer-centos-main/
 *.vmdk
 *.vdi
 *.ova
-*.dfs
 debian-10.11-amd64.json
 
