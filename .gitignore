@@ -1,0 +1,11 @@
+.packer_templates/
+.packer-centos-main/
+.scripts-temp/	
+*.iso
+*.box
+*.ovf
+*.vmdk
+*.vdi
+*.ova
+debian-10.11-amd64.json
+
