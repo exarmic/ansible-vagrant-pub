@@ -1,9 +1,9 @@
 #!/bin/sh -eux
 export DEBIAN_FRONTEND=noninteractive
 
-echo ###########################
+echo "###########################"
 echo "update the package list"
-echo ###########################
+echo "###########################"
 sudo apt-get -y update;
  
 echo "install packages"
@@ -11,32 +11,38 @@ echo "install packages"
 sudo apt-get install mc resolvconf -y
 
 
-echo ###########################
+echo "###########################"
 echo "Install python pip3"
-echo ###########################
+echo "###########################"
 sudo apt-get install python3-pip -y
-sudo pip3 install --upgrade pip
+python3 -m pip install --upgrade pip
 
 # Don't remember why it is needed
-sudo python3 -m pip install setuptools_rust
+python3 -m pip install setuptools_rust
 
-# on VM01 to run ansible pexpect module for FreeIPA
-sudo python3 -m pip install pexpect
-
-echo ###########################
+echo "###########################"
 echo "install ansible not from astra linux repository"
-echo ###########################ss
-sudo python3 -m pip install ansible 
+echo "###########################"
+python3 -m pip install ansible 
 
 # mainly for VM03 for running docker from ansible 
-sudo ansible-galaxy collection install community.docker 
+ansible-galaxy collection install community.docker 
+
+# on VM01 to run ansible pexpect module for FreeIPA
+python3 -m pip install pexpect
 
 # mainly for VM02 for Foreman
-echo "en_US.UTF-8 UTF-8" | sudo tee -a /etc/locale.gen && sudo locale-gen 
+if [[ $(cat /etc/locale.gen | grep "en_US.UTF-8" | grep -v "#" ) ]]; then
+    echo "en_US.UTF-8 locale exist"
+	sudo locale-gen 
+else
+    echo "en_US.UTF-8 UTF-8" | sudo tee -a /etc/locale.gen && sudo locale-gen 
+fi
 
-echo ###########################
+
+echo "###########################"
 echo "set timezone"
-echo ###########################
+echo "###########################"
 export TZ=Europe/Moscow 
 sudo ln -snf /usr/share/zoneinfo/$TZ /etc/localtime 
 sudo echo $TZ > /etc/timezone 

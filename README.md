@@ -172,6 +172,7 @@ vagrant package --base alse-vanilla-1.7.2-virtualbox-mg7.2.0
 #### Сборка контейнера zabbix с помощью Dockerfile:
 
 Пакет docker должен быть установлен (https://wiki.astralinux.ru/pages/viewpage.action?pageId=158601444)
+
 * Загрузка Dockerfile и базового контейнера ALSE
 ```
 wget https://github.com/exarmic/ansible-vagrant-pub/blob/main/docker/Dockerfile
@@ -190,4 +191,17 @@ docker build -t my-alse-zabbix:1.0 - < Dockerfile
 run -p 8082:80 --hostname=zabbix-full-02 --name=zabbix-full-02 -d -t  my-alse-zabbix:1.0 
 docker exec -it  zabbix-full-02 /bin/bash
 ```
+#### Использование Packer для конвертации образа ALSE VirtualBox в образ Vagrant "base box" 
 
+* Убедиться что VirtualBox установлен
+* Загрузить и распаковать проект с git https://github.com/exarmic/ansible-vagrant-pub/archive/refs/heads/main.zip
+* Перейти в каталог packer проекта 
+* Загрузить и распаковать Packer https://www.packer.io/downloads в каталог packer проекта. Или убедиться что каталог, в котором находится packer, находится в переменной PATH.
+* Загрузить последний образ с https://vault.astralinux.ru/images/alse/virtualbox/ в каталог packer проекта
+* В фале packer-asle-from-virtualbox-to-vagrantbox wo provisioning.json исправить значение переменной "base_image" в секции variables на имя загруженного образа без расширения "ova".
+* Запустить команду 
+```
+	packer build -force "packer-asle-from-virtualbox-to-vagrantbox wo provisioning.json"
+```
+* По результату выполнения должен появиться образ {{ base_image }}.virtualbox.box
+* Использовать образ для запуска окружения через Vagrant

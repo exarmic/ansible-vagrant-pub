@@ -1,6 +1,6 @@
 {
  "variables" : {
-    "base_name": "alse-vanilla-1.7.2-vbfrom-qcow2",
+    "base_name": "alse-vanilla-gui-1.7.2-virtualbox-mg7.2.0",
     "image_name": "{{user `base_name`}}.ova",
     "out_image_name": "{{user `base_name`}}-{{isotime `2006-01-02`}}",
     "user": "astra",
@@ -31,10 +31,7 @@
   "post-processors": [
     {
       "output": "{{user `base_name`}}.{{.Provider}}.box",
-      "type": "vagrant",
+      "type": "vagrant"
     }
-  ],
- 
-
-  
-}
+  ]
+ }

@@ -35,7 +35,7 @@
       command: kinit admin
       responses:
         Password: "P@ssw0rd"
-    timeout: 5
+    timeout: 20
 ### Check freeipa server status before kinit
     when: var_ipa_status_kinit.stdout.find('test.local') != -1
 

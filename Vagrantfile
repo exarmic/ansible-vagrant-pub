@@ -43,7 +43,7 @@ Vagrant.configure("2") do |config|
     vm01.vm.hostname = "vm01.test.local"
     vm01.vm.network "private_network",  ip: "192.168.56.151", name: "VirtualBox Host-Only Ethernet Adapter", adapter:2, auto_config: false, hostname: true
     vm01.vm.provision "shell", run: "always", inline: "ifconfig eth1 192.168.56.151 netmask 255.255.255.0 up" 
-#	vm01.vm.provision "shell", path: "vagrant-scripts\\install-packages.sh"
+	vm01.vm.provision "shell", path: "vagrant-scripts\\install-packages.sh"
     vm01.vm.provision "ansible_local" do |ansible|
       ansible.playbook = "ansible/vm01-playbook.yml"
       ansible.limit = 'all,localhost'

@@ -1,4 +1,15 @@
 {
+
+ "variables" : {
+    "_base_name": "alse-vanilla-1.7.2-vbfrom-qcow2",
+    "image_name": "{{user `base_name`}}.ova",
+    "out_image_name": "{{user `base_name`}}-{{isotime `2006-01-02`}}",
+    "user": "astra",
+    "pass": "astra",
+    "memory": "4096",
+    "cpus": "2"
+   }, 
+
   "builders": [
     {
        "type": "virtualbox-ovf",
@@ -33,15 +44,5 @@
       "type": "vagrant",
       "vagrantfile_template": "Vagrantfile.template"
     }
-  ],
- 
- "variables" : {
-    "base_name": "alse-vanilla-1.7.2-vbfrom-qcow2",
-    "image_name": "{{user `base_name`}}.ova",
-    "out_image_name": "{{user `base_name`}}-{{isotime `2006-01-02`}}",
-    "user": "astra",
-    "pass": "astra",
-    "memory": "4096",
-    "cpus": "2"
-   } 
-}
+  ]
+ }
