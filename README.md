@@ -174,7 +174,7 @@ vagrant package --base alse-vanilla-1.7.2-virtualbox-mg7.2.0
 Пакет docker должен быть установлен (https://wiki.astralinux.ru/pages/viewpage.action?pageId=158601444)
 * Загрузка Dockerfile и базового контейнера ALSE
 ```
-wget https://github.com/exarmic/ansible-vagrant-pub/blob/main/Dockerfile
+wget https://github.com/exarmic/ansible-vagrant-pub/blob/main/docker/Dockerfile
 wget https://vault.astralinux.ru/images/alse/docker/alse-slim-1.7.2-docker-mg7.2.0.tar
 ```
 * Импорт базового контейнера ALSE в локальный регистр:
