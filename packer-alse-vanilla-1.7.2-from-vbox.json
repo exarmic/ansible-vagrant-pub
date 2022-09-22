@@ -2,7 +2,7 @@
   "builders": [
     {
       "type": "virtualbox-ovf",
-      "source_path": "{{user `base_name`}}.ova",
+      "source_path": "{{user `image_name`}}",
       "output_directory": "",
       "output_filename": "{{user `out_image_name`}}",
       "vm_name": "{{user `base_name`}}-{{isotime `2006-01-02`}}",
@@ -21,7 +21,7 @@
     {
       "type": "shell",
       "scripts": [
-           ".\\scripts\\vagrant-user.sh",
+       ".\\scripts\\vagrant-user.sh",
 	   ".\\scripts\\install-packages.sh",
 	   ".\\scripts\\vagrant.sh",
 	   ".\\scripts\\sshd.sh"
@@ -33,6 +33,7 @@
     {
       "output": "{{user `base_name`}}.{{.Provider}}.box",
       "type": "vagrant",
+	  "vagrantfile_template": "Vagrantfile.template"
     }
   ],
  
