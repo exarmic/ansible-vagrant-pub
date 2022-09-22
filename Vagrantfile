@@ -9,13 +9,14 @@
 # you're doing.
 Vagrant.configure("2") do |config|
 
-# Common ssh cred. (do not need to create vagrant user
+# Common ssh cred. with sudo rights (do not need to create vagrant user!)
 
-#  config.ssh.username = "astra"
-#  config.ssh.password = "astra"
+  config.ssh.username = "astra"
+  config.ssh.password = "astra"
 
 # Common vm.box statement for all VMs
-  config.vm.box = "alse-vanilla-1.7.2-virtualbox-mg7.2.0.box"
+#  config.vm.box = "alse-vanilla-1.7.2-virtualbox-mg7.2.0.box"
+  config.vm.box = "alse-vanilla-1.7.2-vbfrom-qcow2.virtualbox.box"
 
 # config.vm.define "ansible01" do |ansible01|
 #   ansible01.vm.box = "alse-vanilla-1.7.2-virtualbox-mg7.2.0.box"
@@ -42,8 +43,9 @@ Vagrant.configure("2") do |config|
     vm01.vm.hostname = "vm01.test.local"
     vm01.vm.network "private_network",  ip: "192.168.56.151", name: "VirtualBox Host-Only Ethernet Adapter", adapter:2, auto_config: false, hostname: true
     vm01.vm.provision "shell", run: "always", inline: "ifconfig eth1 192.168.56.151 netmask 255.255.255.0 up" 
+#	vm01.vm.provision "shell", path: "vagrant-scripts\\install-packages.sh"
     vm01.vm.provision "ansible_local" do |ansible|
-      ansible.playbook = "ansible\\vm01-playbook.yml"
+      ansible.playbook = "ansible/vm01-playbook.yml"
       ansible.limit = 'all,localhost'
     end
     vm01.vm.provider :virtualbox do |vb|
@@ -52,42 +54,42 @@ Vagrant.configure("2") do |config|
       vb.customize ["modifyvm", :id, "--name", "vm01"]
     end
   end
-  config.vm.define "vm02" do |vm02|
+# config.vm.define "vm02" do |vm02|
 #    vm02.vm.box = "alse-vanilla-1.7.2-virtualbox-mg7.2.0.box"
-    vm02.vm.network "forwarded_port", guest: 80, host: 8081
-    vm02.vm.network "forwarded_port", guest: 443, host: 8243
-    vm02.vm.network :forwarded_port, guest: 22, host: 10222, id: "ssh"
-    vm02.vm.hostname = "vm02.test.local"
-    vm02.vm.network "private_network", ip: "192.168.56.152", name: "VirtualBox Host-Only Ethernet Adapter", adapter:2,  auto_config: false, hostname: true
-    vm02.vm.provision "shell", inline: "ifconfig eth1 192.168.56.152 netmask 255.255.255.0 up", run: "always"
-    vm02.vm.provision "ansible_local" do |ansible|
-      ansible.playbook = "ansible\\vm02-playbook.yml"
-      ansible.limit = 'all,localhost'
-    end
-    vm02.vm.provider :virtualbox do |vb|
-      vb.customize ["modifyvm", :id, "--cpus", 2]
-      vb.customize ["modifyvm", :id, "--memory", 3072]
-      vb.customize ["modifyvm", :id, "--name", "vm02"]
-    end
-  end
-  config.vm.define "vm03" do |vm03|
+#   vm02.vm.network "forwarded_port", guest: 80, host: 8081
+#   vm02.vm.network "forwarded_port", guest: 443, host: 8243
+#   vm02.vm.network :forwarded_port, guest: 22, host: 10222, id: "ssh"
+#   vm02.vm.hostname = "vm02.test.local"
+#   vm02.vm.network "private_network", ip: "192.168.56.152", name: "VirtualBox Host-Only Ethernet Adapter", adapter:2,  auto_config: false, hostname: true
+#   vm02.vm.provision "shell", inline: "ifconfig eth1 192.168.56.152 netmask 255.255.255.0 up", run: "always"
+#   vm02.vm.provision "ansible_local" do |ansible|
+#     ansible.playbook = "ansible\\vm02-playbook.yml"
+#     ansible.limit = 'all,localhost'
+#   end
+#   vm02.vm.provider :virtualbox do |vb|
+#     vb.customize ["modifyvm", :id, "--cpus", 2]
+#     vb.customize ["modifyvm", :id, "--memory", 3072]
+#     vb.customize ["modifyvm", :id, "--name", "vm02"]
+#   end
+# end
+# config.vm.define "vm03" do |vm03|
 #    vm03.vm.box = "alse-vanilla-1.7.2-virtualbox-mg7.2.0.box"
-    vm03.vm.network "forwarded_port", guest: 80, host: 8082
-    vm03.vm.network "forwarded_port", guest: 443, host: 8343
-    vm03.vm.network :forwarded_port, guest: 22, host: 10223, id: "ssh"
-    vm03.vm.hostname = "vm03.test.local"
-    vm03.vm.network "private_network", ip: "192.168.56.153", name: "VirtualBox Host-Only Ethernet Adapter", adapter:2,  auto_config: false, hostname: true
-    vm03.vm.provision "shell", inline: "ifconfig eth1 192.168.56.153 netmask 255.255.255.0 up", run: "always"
-    vm03.vm.provision "ansible_local" do |ansible|
-      ansible.playbook = "ansible\\vm03-playbook.yml"
-      ansible.limit = 'all,localhost'
-    end
-    vm03.vm.provider :virtualbox do |vb|
-      vb.customize ["modifyvm", :id, "--cpus", 2]
-      vb.customize ["modifyvm", :id, "--memory", 2048]
-      vb.customize ["modifyvm", :id, "--name", "vm03"]
-    end
-  end
+#   vm03.vm.network "forwarded_port", guest: 80, host: 8082
+#   vm03.vm.network "forwarded_port", guest: 443, host: 8343
+#   vm03.vm.network :forwarded_port, guest: 22, host: 10223, id: "ssh"
+#   vm03.vm.hostname = "vm03.test.local"
+#   vm03.vm.network "private_network", ip: "192.168.56.153", name: "VirtualBox Host-Only Ethernet Adapter", adapter:2,  auto_config: false, hostname: true
+#   vm03.vm.provision "shell", inline: "ifconfig eth1 192.168.56.153 netmask 255.255.255.0 up", run: "always"
+#   vm03.vm.provision "ansible_local" do |ansible|
+#     ansible.playbook = "ansible\\vm03-playbook.yml"
+#     ansible.limit = 'all,localhost'
+#   end
+#   vm03.vm.provider :virtualbox do |vb|
+#     vb.customize ["modifyvm", :id, "--cpus", 2]
+#     vb.customize ["modifyvm", :id, "--memory", 2048]
+#     vb.customize ["modifyvm", :id, "--name", "vm03"]
+#   end
+# end
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
   # `vagrant box outdated`. This is not recommended.
