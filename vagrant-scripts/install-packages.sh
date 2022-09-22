@@ -30,6 +30,7 @@ ansible-galaxy collection install community.docker
 
 # on VM01 to run ansible pexpect module for FreeIPA
 python3 -m pip install pexpect
+sudo python3 -m pip install pexpect
 
 # mainly for VM02 for Foreman
 if [[ $(cat /etc/locale.gen | grep "en_US.UTF-8" | grep -v "#" ) ]]; then
