@@ -1,0 +1,47 @@
+{
+  "builders": [
+    {
+       "type": "virtualbox-ovf",
+       "source_path": "{{user `image_name`}}",
+       "output_directory": "",
+       "output_filename": "{{user `out_image_name`}}",
+       "vm_name": "{{user `base_name`}}-{{isotime `2006-01-02`}}",
+       "format": "ova",
+       "ssh_username": "{{user `user`}}",
+       "ssh_password": "{{user `pass`}}",
+       "ssh_timeout": "2m",
+       "boot_wait": "25s",
+       "ssh_host": "127.0.0.1",
+       "shutdown_command": "echo '{{user `pass`}}' | sudo -S /sbin/halt -h -p"
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "shell",
+      "scripts": [
+         ".\\packer-scripts\\vagrant-user.sh",
+         ".\\packer-scripts\\install-packages.sh",
+         ".\\packer-scripts\\vagrant.sh",
+         ".\\packer-scripts\\sshd.sh"
+      ]
+     }
+  ],
+  
+  "post-processors": [
+    {
+      "output": "{{user `base_name`}}.{{.Provider}}.box",
+      "type": "vagrant",
+      "vagrantfile_template": "Vagrantfile.template"
+    }
+  ],
+ 
+ "variables" : {
+    "base_name": "alse-vanilla-1.7.2-vbfrom-qcow2",
+    "image_name": "{{user `base_name`}}.ova",
+    "out_image_name": "{{user `base_name`}}-{{isotime `2006-01-02`}}",
+    "user": "astra",
+    "pass": "astra",
+    "memory": "4096",
+    "cpus": "2"
+   } 
+}
