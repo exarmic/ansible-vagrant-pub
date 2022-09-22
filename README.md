@@ -47,7 +47,7 @@
 | Ресурсы | 4 ГБ ОЗУ, 3vCPU | 3 ГБ ОЗУ, 2vCPU | 2 ГБ ОЗУ, 2vCPU |
 | Adapter 1 (eth0), Проброс портов "порт ВМ":"порт хоста" | 80:8080, 22:10221, 443:8143 | 80:8081, 22:10222, 443:8243 | 80:8082, 22:10223, 443:8343 |
 | Adapter 2 (eth1)  | 192.168.56.151 | 192.168.56.152 | 192.168.56.153 |
-| Используемый playbook | [vm01-playbook.yml](/vm01-playbook.yml) | [vm02-playbook.yml](/vm02-playbook.yml) | [vm03-playbook.yml](/vm03-playbook.yml)  |
+| Используемый playbook | [vm01-playbook.yml](ansible/vm01-playbook.yml) | [vm02-playbook.yml](ansible/vm02-playbook.yml) | [vm03-playbook.yml](ansible/vm03-playbook.yml)  |
 | Основные устанавливаемые пакеты | FreeIPA Server | FreeIPA Client, Foreman | Docker+Zabbix App containers |
 
 #### Основные документы используемые при подготовке Vagrantfile:
